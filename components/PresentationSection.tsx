@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertTriangle, UserCheck, Users, Building2 } from 'lucide-react';
+import { AlertTriangle, UserCheck, Users, Building2, Download } from 'lucide-react';
 
 export const PresentationSection: React.FC = () => {
   return (
@@ -28,7 +28,16 @@ export const PresentationSection: React.FC = () => {
 
                 <div className="p-6">
                     <p className="text-gray-600 mb-6">
-                        La domanda (Modello TT 2112) può essere presentata allo sportello in tre modi:
+                        La domanda (<a 
+                            href="https://www.ilportaledellautomobilista.it/documents/56611/128846273/TT2112.pdf/826c655d-eba2-465a-8ab8-c618bddf1d4e" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-motorizzazione font-semibold hover:underline inline-flex items-center gap-1 transition-colors"
+                            title="Scarica il PDF del Modello TT 2112"
+                        >
+                            Modello TT 2112
+                            <Download className="w-4 h-4" />
+                        </a>) può essere presentata allo sportello in tre modi:
                     </p>
                     
                     <ul className="space-y-4">
