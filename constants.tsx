@@ -18,7 +18,7 @@ export const STEPS_DATA: StepItem[] = [
   },
   {
     id: 3,
-    title: "Esame di Teoria & Foglio Rosa",
+    title: "Esame Teoria & Foglio Rosa",
     description: "Hai 2 tentativi in 6 mesi. L'esame (Cat. B) consiste in 30 quiz (max 3 errori) in 20 minuti. Superato l'esame, ottieni il Foglio Rosa.",
     icon: BookOpen
   },
