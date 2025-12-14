@@ -7,6 +7,9 @@ L'applicazione offre una panoramica chiara dei costi, dei passaggi necessari e f
 ## Funzionalità Principali
 
 *   **Guida Passo-Passo:** Una visualizzazione chiara dei 4 step fondamentali (Visita Medica, Domanda, Teoria, Pratica).
+*   **Gestione Modulo TT 2112:**
+    *   **Compilazione Online:** Integrazione via modale con JotForm per compilare il modulo burocratico direttamente dal browser.
+    *   **Download PDF:** Possibilità di scaricare il modello vuoto ufficiale.
 *   **Checklist Documenti Dinamica:**
     *   **Personalizzazione:** Pannello di configurazione per aggiungere automaticamente i documenti necessari in base al profilo utente:
         *   **Minorenni:** Aggiunge documento del genitore/tutore.
