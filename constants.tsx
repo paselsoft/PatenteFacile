@@ -112,8 +112,8 @@ export const DELEGATE_DOCUMENTS_DATA: ChecklistItem[] = [
   },
   {
     id: 'del_doc_delegato',
-    label: 'Documento Delegato (Originale)',
-    detail: 'Documento di riconoscimento della persona che presenta la pratica (Delegato) in ORIGINALE per identificazione.',
+    label: 'Documento Delegato (Orig. + Copia)',
+    detail: 'Documento di riconoscimento della persona che presenta la pratica (Delegato): serve l\'ORIGINALE in visione più una FOTOCOPIA da allegare.',
     required: true
   },
   {

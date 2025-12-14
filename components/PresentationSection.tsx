@@ -76,7 +76,7 @@ export const PresentationSection: React.FC = () => {
                                 <ul className="list-disc list-inside space-y-2 text-gray-700">
                                     <li>Delega in carta semplice firmata dal candidato.</li>
                                     <li>
-                                        Documento del <strong>Delegato</strong> in <span className="text-red-600 font-bold bg-red-50 px-1 rounded">ORIGINALE</span>
+                                        Documento del <strong>Delegato</strong> in <span className="text-red-600 font-bold bg-red-50 px-1 rounded">ORIGINALE</span> + <span className="text-red-600 font-bold bg-red-50 px-1 rounded">FOTOCOPIA</span>
                                     </li>
                                     <li>
                                         Documento del <strong>Delegante</strong> in <span className="text-red-600 font-bold bg-red-50 px-1 rounded">FOTOCOPIA</span>
