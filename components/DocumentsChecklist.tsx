@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DOCUMENTS_DATA, DELEGATE_DOCUMENTS_DATA, EXTRA_EU_DOCUMENTS_DATA, MINOR_DOCUMENTS_DATA } from '../constants';
 import { ChecklistItem } from '../types';
-import { Check, ClipboardList, RefreshCw, Info, X, UserCog, Globe, Baby, Settings, Camera, Trophy, Sparkles } from 'lucide-react';
+import { Check, ClipboardList, RefreshCw, Info, X, UserCog, Globe, Baby, Settings, Camera, Trophy, Sparkles, AlertTriangle } from 'lucide-react';
 
 export const DocumentsChecklist: React.FC = () => {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
@@ -13,6 +13,9 @@ export const DocumentsChecklist: React.FC = () => {
   
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ChecklistItem | null>(null);
+  
+  // State for Custom Reset Modal
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   // Load state from localStorage on mount
   useEffect(() => {
@@ -53,10 +56,13 @@ export const DocumentsChecklist: React.FC = () => {
     }));
   };
 
-  const resetChecklist = () => {
-    if (window.confirm('Vuoi davvero resettare la checklist?')) {
-        setCheckedItems({});
-    }
+  const handleResetClick = () => {
+    setShowResetConfirm(true);
+  };
+
+  const confirmReset = () => {
+    setCheckedItems({});
+    setShowResetConfirm(false);
   };
 
   // Build the dynamic list based on toggles
@@ -137,7 +143,7 @@ export const DocumentsChecklist: React.FC = () => {
                             <span className="text-[10px] uppercase tracking-wider text-blue-200 font-semibold">Completato</span>
                         </div>
                         <button 
-                            onClick={resetChecklist}
+                            onClick={handleResetClick}
                             className="p-2 hover:bg-white/10 rounded-full transition-colors group"
                             title="Resetta checklist"
                         >
@@ -328,6 +334,37 @@ export const DocumentsChecklist: React.FC = () => {
                 </div>
             </div>
         </div>
+
+        {/* Reset Confirmation Modal */}
+        {showResetConfirm && (
+            <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setShowResetConfirm(false)}>
+                <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden animate-in zoom-in-95 duration-200 p-6 text-center" onClick={e => e.stopPropagation()}>
+                    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <AlertTriangle className="w-8 h-8 text-red-600" />
+                    </div>
+                    
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">Resettare la Checklist?</h3>
+                    <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+                        Stai per cancellare tutti i documenti segnati. Questa azione non può essere annullata.
+                    </p>
+
+                    <div className="flex gap-3">
+                        <button 
+                            onClick={() => setShowResetConfirm(false)}
+                            className="flex-1 py-2.5 px-4 rounded-xl border border-gray-200 font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-800 transition-colors"
+                        >
+                            Annulla
+                        </button>
+                        <button 
+                            onClick={confirmReset}
+                            className="flex-1 py-2.5 px-4 rounded-xl bg-red-600 font-semibold text-white hover:bg-red-700 shadow-md hover:shadow-lg transition-all"
+                        >
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )}
 
         {/* Detail Modal */}
         {selectedItem && (

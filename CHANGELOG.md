@@ -5,6 +5,7 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 ## [Unreleased]
 
 ### Aggiunto
+- **Modale Conferma Reset:** Implementata una finestra di dialogo personalizzata (Custom Modal) per la conferma del reset della checklist. Sostituisce il `window.confirm` nativo per garantire compatibilità con le preview sandboxed e migliorare la coerenza visiva.
 - **Checklist Filtri:** Reso il pannello filtri della checklist sempre visibile e rimosso il meccanismo "accordion" per migliorare l'usabilità immediata.
 - **Layout TT 2112:** Ottimizzato il box di download per forzare l'avviso di stampa su una singola riga e allineare il pulsante in alto.
 - **Avviso Stampa TT 2112:** Inserito un badge informativo evidenziato nel box di download del Modello TT 2112 che raccomanda la stampa su fogli singoli (no fronte-retro).
@@ -29,6 +30,7 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 - **Sezione Delegati Migliorata:** Aggiunto un header visivo, icone dedicate e indentazione ("sottovoci") per i documenti relativi alla delega.
 
 ### Modificato
+- **Reset Checklist:** Rimossa la dipendenza da API native bloccanti (`window.confirm`) a favore di componenti React controllati.
 - **Requisiti Delegato:** Aggiornata la sezione documenti per specificare che per il delegato è richiesta anche la fotocopia del documento, oltre all'originale.
 - **Layout Responsivo Box TT 2112:** Implementata una logica adattiva avanzata (Stack->Row->Stack->Row) per gestire correttamente lo spazio su schermi laptop/tablet quando la griglia si divide, prevenendo l'overflow del pulsante di download.
 - **Layout Box TT 2112:** Corretto l'allineamento del pulsante di download per centrarlo verticalmente ("dentro il box") invece di allinearlo in alto.

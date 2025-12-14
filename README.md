@@ -14,7 +14,7 @@ L'applicazione offre una panoramica chiara dei costi, dei passaggi necessari e f
         *   **Delegato:** Aggiunge documenti per la delega.
     *   **Progresso Reale:** Il completamento al 100% è calcolato solo sui documenti pertinenti al profilo selezionato.
     *   Salvataggio automatico dei progressi e delle preferenze nel browser (LocalStorage).
-    *   Modal popup per visualizzare i dettagli specifici di ogni documento.
+    *   **Sistema Modali Custom:** Finestre popup integrate nel design (non native del browser) per visualizzare i dettagli dei documenti e confermare azioni critiche come il reset della lista.
 *   **Navigazione Intelligente:** Barra di navigazione fissa (Sticky) con scorrimento fluido (Smooth Scroll).
 *   **Tabella Costi:** Un riepilogo chiaro e trasparente dei costi fissi PagoPA.
 *   **Design Responsivo:** Ottimizzato per dispositivi mobili e desktop utilizzando Tailwind CSS.
