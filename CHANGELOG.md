@@ -4,6 +4,19 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 
 ## [Unreleased]
 
+### Fix Critici
+- **Service Worker Registration (Fix Definitivo):**
+  - Semplificata la chiamata di registrazione a `navigator.serviceWorker.register('service-worker.js')`.
+  - Rimosso qualsiasi tentativo di costruire URL assoluti o usare percorsi con `./`. L'uso del filename diretto delega la risoluzione al browser, garantendo che l'origine sia sempre identica a quella della pagina (risolvendo "Script origin does not match") ed evitando errori di parsing URL.
+  - Spostata la registrazione all'evento `window.load` per migliorare le performance di caricamento iniziale della pagina.
+
+### PWA Engagement & UX (Fase 1)
+- **Installazione In-App:** Aggiunto un banner discreto ("Toast") che appare sui dispositivi compatibili per invitare l'utente a installare l'app come PWA. Scompare se l'utente lo chiude o installa l'app.
+- **Gestione Aggiornamenti:** Implementato un sistema di notifica aggiornamenti. Quando il Service Worker rileva una nuova versione, appare un banner in alto con un pulsante "Aggiorna Ora" che ricarica l'app in modo sicuro.
+- **Celebrazione Checklist:** Aggiunto un effetto "Coriandoli" (Confetti) che si attiva automaticamente quando l'utente completa il 100% della checklist documenti, aumentando la gratificazione (Gamification).
+- **Service Worker Refactor:** Migrata la logica di registrazione del Service Worker da `index.tsx` a un custom hook `useServiceWorker` per gestire lo stato reattivo dell'interfaccia.
+- **Strategia Cache:** Aggiornato `service-worker.js` per non forzare l'attivazione immediata (`skipWaiting`), permettendo all'utente di finire la sessione corrente prima di aggiornare.
+
 ### UX Improvements
 - **Link Portale Automobilista:** Trasformato il box decorativo statico nella sezione "Versamenti PagoPA" in una "Action Card" funzionale.
     - Ora è un link cliccabile che porta direttamente al sito ufficiale (Portale dell'Automobilista) per effettuare i pagamenti.

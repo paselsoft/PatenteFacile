@@ -7,11 +7,15 @@ import { CostsSection } from './components/CostsSection';
 import { DocumentsChecklist } from './components/DocumentsChecklist';
 import { Footer } from './components/Footer';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { PwaManager } from './components/pwa/PwaManager';
 
 const App: React.FC = () => {
   return (
     <ErrorBoundary>
       <div className="min-h-screen flex flex-col">
+        {/* Gestore Prompt PWA (Installazione & Aggiornamenti) */}
+        <PwaManager />
+
         {/* Skip Link for Accessibility */}
         <a
           href="#main-content"
