@@ -7,6 +7,7 @@ import { ChecklistItemRow } from './checklist/ChecklistItem';
 import { ResetConfirmModal } from './checklist/ResetConfirmModal';
 import { ChecklistDetailModal } from './checklist/ChecklistDetailModal';
 import confetti from 'canvas-confetti';
+import { useTranslation } from '../contexts/LanguageContext';
 
 export const DocumentsChecklist: React.FC = () => {
   // Business Logic from Hook
@@ -25,6 +26,7 @@ export const DocumentsChecklist: React.FC = () => {
   // Local UI State for Modals
   const [selectedItem, setSelectedItem] = useState<ChecklistItem | null>(null);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const { t } = useTranslation();
 
   // Confetti Effect trigger
   useEffect(() => {
@@ -81,8 +83,8 @@ export const DocumentsChecklist: React.FC = () => {
                             <ClipboardList className="w-6 h-6" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-bold tracking-tight">Checklist Documenti</h2>
-                            <p className="text-blue-100 text-sm">Non dimenticare nulla a casa.</p>
+                            <h2 className="text-xl font-bold tracking-tight">{t('checklist.title')}</h2>
+                            <p className="text-blue-100 text-sm">{t('checklist.subtitle')}</p>
                         </div>
                     </div>
                     
@@ -90,7 +92,7 @@ export const DocumentsChecklist: React.FC = () => {
                     <div className="flex items-center space-x-5 relative z-10">
                         <div className="text-right">
                             <span className="block text-3xl font-bold leading-none">{progress}%</span>
-                            <span className="text-[10px] uppercase tracking-wider text-blue-200 font-semibold">Completato</span>
+                            <span className="text-[10px] uppercase tracking-wider text-blue-200 font-semibold">{t('checklist.completed')}</span>
                         </div>
                         <button 
                             onClick={() => setShowResetConfirm(true)}
@@ -116,29 +118,29 @@ export const DocumentsChecklist: React.FC = () => {
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="flex items-center text-sm font-bold tracking-wide text-gray-700">
                             <Settings className="w-4 h-4 mr-2 text-motorizzazione" />
-                            PERSONALIZZA LA TUA LISTA
+                            {t('checklist.customize_title')}
                         </h3>
-                        <span className="text-xs text-gray-400 font-normal hidden sm:block">Seleziona le opzioni che ti riguardano</span>
+                        <span className="text-xs text-gray-400 font-normal hidden sm:block">{t('checklist.customize_subtitle')}</span>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <ChecklistToggle 
                             id="toggle-extra-eu"
-                            label="Cittadino Extra-UE" 
+                            label={t('checklist.toggle_extra_eu')} 
                             checked={isExtraEu} 
                             onChange={setIsExtraEu}
                             icon={Globe}
                         />
                         <ChecklistToggle 
                             id="toggle-minor"
-                            label="Minorenne" 
+                            label={t('checklist.toggle_minor')} 
                             checked={isMinor} 
                             onChange={setIsMinor}
                             icon={Baby}
                         />
                         <ChecklistToggle 
                             id="toggle-delegate"
-                            label="Delega a Terzi" 
+                            label={t('checklist.toggle_delegate')} 
                             checked={isDelegateMode} 
                             onChange={setIsDelegateMode}
                             icon={UserCog}
@@ -154,9 +156,9 @@ export const DocumentsChecklist: React.FC = () => {
                         </div>
                         <div>
                             <h4 className="font-bold text-green-800 text-lg flex items-center">
-                                Ottimo lavoro! <Sparkles className="w-4 h-4 ml-2 text-yellow-500" />
+                                {t('checklist.success_title')} <Sparkles className="w-4 h-4 ml-2 text-yellow-500" />
                             </h4>
-                            <p className="text-green-700 text-sm">Hai raccolto tutti i documenti necessari. Sei pronto per lo sportello.</p>
+                            <p className="text-green-700 text-sm">{t('checklist.success_desc')}</p>
                         </div>
                     </div>
                 )}
@@ -168,7 +170,7 @@ export const DocumentsChecklist: React.FC = () => {
                              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
                                 <ClipboardList className="w-8 h-8 opacity-50" />
                              </div>
-                             <p>Nessun documento richiesto con i filtri attuali.</p>
+                             <p>{t('checklist.empty_state')}</p>
                         </div>
                     ) : (
                         currentList.map((item) => (
@@ -197,7 +199,7 @@ export const DocumentsChecklist: React.FC = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
                         <p className="text-white font-medium text-lg leading-tight">
-                            "L'organizzazione è la chiave per evitare imprevisti allo sportello."
+                            {t('checklist.sidebar_quote')}
                         </p>
                     </div>
                 </div>
@@ -208,16 +210,16 @@ export const DocumentsChecklist: React.FC = () => {
                         <div className="p-2 bg-white rounded-lg shadow-sm mr-3 text-motorizzazione">
                             <Camera className="w-6 h-6" />
                         </div>
-                        <h3 className="font-bold text-motorizzazione text-lg">Nota sulle Foto</h3>
+                        <h3 className="font-bold text-motorizzazione text-lg">{t('checklist.photo_note_title')}</h3>
                      </div>
                      
                      <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                         Non è più necessario portare le classiche foto tessera cartacee allo sportello della Motorizzazione.
+                         {t('checklist.photo_note_desc')}
                      </p>
                      
                      <div className="bg-white p-4 rounded-xl text-sm border border-blue-100 shadow-inner">
                          <p className="text-gray-600">
-                             La foto viene <strong>acquisita digitalmente</strong> durante la visita medica. Sulla ricevuta telematica che riceverai dal medico sarà già presente la tua foto.
+                             {t('checklist.photo_note_detail')}
                          </p>
                      </div>
                 </div>

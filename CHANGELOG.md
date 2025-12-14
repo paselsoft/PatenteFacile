@@ -4,7 +4,23 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 
 ## [Unreleased]
 
-### Fix Critici
+### Funzionalità (Fase 2: Internazionalizzazione)
+- **Supporto Multi-lingua (i18n):** Implementata l'intera infrastruttura per il supporto multilingua.
+    - Creazione `LanguageContext` per la gestione dello stato globale della lingua.
+    - Aggiunto hook `useTranslation` per il consumo delle traduzioni nei componenti.
+    - Aggiunti file di localizzazione `it.ts` e `en.ts` con dizionari completi.
+    - Persistenza della preferenza lingua tramite `localStorage`.
+- **UI Language Switcher:**
+    - Aggiunto pulsante toggle nella Navbar (desktop e mobile) per passare istantaneamente da Italiano a Inglese.
+    - Icona mondo/globo per identificare chiaramente la funzionalità.
+- **Refactoring Dati:**
+    - Aggiornato `constants.tsx` rimuovendo i testi hardcoded e sostituendoli con chiavi di traduzione (`titleKey`, `descriptionKey`, ecc.).
+    - Aggiornati i tipi TypeScript in `types.ts` per riflettere la nuova struttura basata su chiavi.
+- **Localizzazione Completa:**
+    - Tutte le sezioni (Header, Presentazione, Step, Costi, Checklist, Modali, Footer) ora reagiscono dinamicamente al cambio lingua.
+    - Gestione di testi complessi (HTML/Bold) tramite composizione o `dangerouslySetInnerHTML` controllato.
+
+### Fix Critici (Fase 1)
 - **Service Worker Registration (Fix Definitivo):**
   - Semplificata la chiamata di registrazione a `navigator.serviceWorker.register('service-worker.js')`.
   - Rimosso qualsiasi tentativo di costruire URL assoluti o usare percorsi con `./`. L'uso del filename diretto delega la risoluzione al browser, garantendo che l'origine sia sempre identica a quella della pagina (risolvendo "Script origin does not match") ed evitando errori di parsing URL.

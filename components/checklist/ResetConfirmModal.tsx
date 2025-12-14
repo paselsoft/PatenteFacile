@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { AlertTriangle } from 'lucide-react';
+import { useTranslation } from '../../contexts/LanguageContext';
 
 interface ResetConfirmModalProps {
   isOpen: boolean;
@@ -9,6 +10,7 @@ interface ResetConfirmModalProps {
 
 export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({ isOpen, onClose, onConfirm }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -50,9 +52,9 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({ isOpen, on
                 <AlertTriangle className="w-8 h-8 text-red-600" />
             </div>
             
-            <h3 id="reset-title" className="text-xl font-bold text-gray-900 mb-2">Resettare la Checklist?</h3>
+            <h3 id="reset-title" className="text-xl font-bold text-gray-900 mb-2">{t('checklist.reset_modal_title')}</h3>
             <p id="reset-desc" className="text-gray-500 text-sm mb-6 leading-relaxed">
-                Stai per cancellare tutti i documenti segnati. Questa azione non può essere annullata.
+                {t('checklist.reset_modal_desc')}
             </p>
 
             <div className="flex gap-3">
@@ -60,13 +62,13 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({ isOpen, on
                     onClick={onClose}
                     className="flex-1 py-2.5 px-4 rounded-xl border border-gray-200 font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
                 >
-                    Annulla
+                    {t('checklist.reset_btn_cancel')}
                 </button>
                 <button 
                     onClick={onConfirm}
                     className="flex-1 py-2.5 px-4 rounded-xl bg-red-600 font-semibold text-white hover:bg-red-700 shadow-md hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                 >
-                    Reset
+                    {t('checklist.reset_btn_confirm')}
                 </button>
             </div>
         </div>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { AlertTriangle, UserCheck, Users, Building2, Download, FileText, Printer, PenLine, X, ExternalLink, CreditCard } from 'lucide-react';
+import { AlertTriangle, UserCheck, Building2, Download, FileText, Printer, PenLine, X, ExternalLink, CreditCard } from 'lucide-react';
+import { useTranslation } from '../contexts/LanguageContext';
 
 export const PresentationSection: React.FC = () => {
   const [showFormModal, setShowFormModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   // Focus management and Escape key listener for A11y
   useEffect(() => {
@@ -30,7 +32,7 @@ export const PresentationSection: React.FC = () => {
   return (
     <section id="presentazione" className="scroll-mt-24 relative">
         <h2 className="text-3xl font-bold text-motorizzazione text-center mb-10">
-            Chi Può Presentare la Domanda
+            {t('presentation.title')}
         </h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
@@ -47,7 +49,7 @@ export const PresentationSection: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
                         <h3 className="text-white text-xl font-bold p-6 flex items-center shadow-sm">
                             <UserCheck className="w-6 h-6 mr-2 text-accent-green" />
-                            Modalità di Presentazione
+                            {t('presentation.mode_title')}
                         </h3>
                     </div>
                 </div>
@@ -60,13 +62,13 @@ export const PresentationSection: React.FC = () => {
                                  <FileText className="w-6 h-6" />
                              </div>
                              <div>
-                                 <h4 className="text-gray-900 font-bold leading-tight pt-1">Modello TT 2112</h4>
-                                 <p className="text-xs text-gray-500 mt-1 mb-2">Modulo obbligatorio per la domanda.</p>
+                                 <h4 className="text-gray-900 font-bold leading-tight pt-1">{t('presentation.tt2112_title')}</h4>
+                                 <p className="text-xs text-gray-500 mt-1 mb-2">{t('presentation.tt2112_subtitle')}</p>
                                  
                                  {/* Printing Warning */}
                                  <div className="inline-flex items-center px-2 py-1 bg-amber-100 border border-amber-200 rounded-md text-[10px] sm:text-xs font-bold text-amber-800 leading-tight whitespace-nowrap">
                                     <Printer className="w-3 h-3 mr-1.5 flex-shrink-0" />
-                                    Stampa fogli singoli (NO Fronte-Retro)
+                                    {t('presentation.tt2112_print_warning')}
                                  </div>
                              </div>
                         </div>
@@ -82,7 +84,7 @@ export const PresentationSection: React.FC = () => {
                                   <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
                                 </span>
                                 <PenLine className="w-4 h-4 mr-2" />
-                                Compila Online
+                                {t('presentation.btn_online')}
                             </button>
 
                             <a 
@@ -92,45 +94,43 @@ export const PresentationSection: React.FC = () => {
                                 className="col-span-1 bg-white hover:bg-gray-50 text-motorizzazione border border-motorizzazione/30 text-sm font-bold py-2.5 px-4 rounded-lg shadow-sm hover:shadow transition-all duration-300 flex items-center justify-center group whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-motorizzazione focus:ring-offset-2"
                             >
                                 <Download className="w-4 h-4 mr-2" />
-                                Scarica PDF Vuoto
+                                {t('presentation.btn_download')}
                             </a>
                         </div>
                         <p className="text-[10px] text-center text-gray-400 mt-2">
-                            La compilazione online genera un PDF pronto per la stampa.
+                            {t('presentation.online_note')}
                         </p>
                     </div>
 
                     <p className="text-gray-600 mb-6">
-                        Una volta compilato, il modulo può essere presentato allo sportello in tre modi:
+                        {t('presentation.submission_intro')}
                     </p>
                     
                     <ul className="space-y-4">
                         <li className="p-4 bg-gray-50 rounded-xl border-l-4 border-accent-green shadow-sm hover:shadow-md transition-shadow">
-                            <strong className="block font-bold text-lg text-gray-900 mb-1">1. Diretto Interessato</strong>
-                            <span className="text-gray-600">Il candidato si presenta personalmente allo sportello.</span>
+                            <strong className="block font-bold text-lg text-gray-900 mb-1">{t('presentation.method_1_title')}</strong>
+                            <span className="text-gray-600">{t('presentation.method_1_desc')}</span>
                         </li>
                         
                         <li className="p-4 bg-gray-50 rounded-xl border-l-4 border-accent-green shadow-sm hover:shadow-md transition-shadow">
-                            <strong className="block font-bold text-lg text-gray-900 mb-1">2. Soggetto Delegato</strong>
-                            <span className="text-gray-600 block mb-3">Un'altra persona può presentare la pratica per conto del candidato.</span>
+                            <strong className="block font-bold text-lg text-gray-900 mb-1">{t('presentation.method_2_title')}</strong>
+                            <span className="text-gray-600 block mb-3">{t('presentation.method_2_desc')}</span>
                             
                             <div className="bg-white p-4 rounded-lg border border-gray-200 text-sm">
-                                <p className="font-semibold text-gray-800 mb-2 border-b pb-2">Documenti OBBLIGATORI per il delegato:</p>
+                                <p className="font-semibold text-gray-800 mb-2 border-b pb-2">{t('presentation.delegate_docs_title')}</p>
                                 <ul className="list-disc list-inside space-y-2 text-gray-700">
-                                    <li>Delega in carta semplice firmata dal candidato.</li>
-                                    <li>
-                                        Documento del <strong>Delegato</strong> in <span className="text-red-600 font-bold bg-red-50 px-1 rounded">ORIGINALE</span> + <span className="text-red-600 font-bold bg-red-50 px-1 rounded">FOTOCOPIA</span>
+                                    <li>{t('presentation.delegate_doc_1')}</li>
+                                    <li dangerouslySetInnerHTML={{ __html: t('presentation.delegate_doc_2').replace('ORIGINALE', '<span class="text-red-600 font-bold bg-red-50 px-1 rounded">ORIGINALE</span>').replace('ORIGINAL', '<span class="text-red-600 font-bold bg-red-50 px-1 rounded">ORIGINAL</span>').replace('FOTOCOPIA', '<span class="text-red-600 font-bold bg-red-50 px-1 rounded">FOTOCOPIA</span>').replace('PHOTOCOPY', '<span class="text-red-600 font-bold bg-red-50 px-1 rounded">PHOTOCOPY</span>') }}>
                                     </li>
-                                    <li>
-                                        Documento del <strong>Delegante</strong> in <span className="text-red-600 font-bold bg-red-50 px-1 rounded">FOTOCOPIA</span>
+                                    <li dangerouslySetInnerHTML={{ __html: t('presentation.delegate_doc_3').replace('FOTOCOPIA', '<span class="text-red-600 font-bold bg-red-50 px-1 rounded">FOTOCOPIA</span>').replace('PHOTOCOPY', '<span class="text-red-600 font-bold bg-red-50 px-1 rounded">PHOTOCOPY</span>') }}>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         
                         <li className="p-4 bg-gray-50 rounded-xl border-l-4 border-accent-green shadow-sm hover:shadow-md transition-shadow">
-                            <strong className="block font-bold text-lg text-gray-900 mb-1">3. Autoscuola</strong>
-                            <span className="text-gray-600">Tramite un'autoscuola abilitata.</span>
+                            <strong className="block font-bold text-lg text-gray-900 mb-1">{t('presentation.method_3_title')}</strong>
+                            <span className="text-gray-600">{t('presentation.method_3_desc')}</span>
                         </li>
                     </ul>
                 </div>
@@ -145,10 +145,10 @@ export const PresentationSection: React.FC = () => {
                     
                     <h3 className="text-xl font-semibold text-motorizzazione mb-4 flex items-center relative z-10">
                         <Building2 className="w-6 h-6 mr-2" />
-                        Versamenti PagoPA
+                        {t('presentation.pagopa_title')}
                     </h3>
                     <p className="text-gray-600 mb-6 relative z-10">
-                        I versamenti (Diritti e Bolli) devono essere effettuati obbligatoriamente tramite la piattaforma <strong>PagoPA</strong>.
+                        {t('presentation.pagopa_desc')}
                     </p>
 
                     <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-xl shadow-sm relative z-10">
@@ -156,13 +156,13 @@ export const PresentationSection: React.FC = () => {
                             <AlertTriangle className="w-8 h-8 text-red-600 mr-3 flex-shrink-0 mt-1" />
                             <div>
                                 <h4 className="font-bold text-red-800 text-lg mb-2">
-                                    Attenzione: Intestazione Pagamento
+                                    {t('presentation.pagopa_warning_title')}
                                 </h4>
                                 <p className="text-red-700 mb-3 leading-relaxed">
-                                    I bollettini PagoPA devono essere generati e pagati esclusivamente a nome del <strong>CANDIDATO</strong> (l'intestatario della futura patente).
+                                    {t('presentation.pagopa_warning_desc')}
                                 </p>
                                 <p className="text-red-800 font-medium text-sm bg-red-100 p-2 rounded">
-                                    Anche se a pagare è un genitore o un delegato, il <strong>Codice Fiscale</strong> sul versamento deve essere quello di chi deve conseguire la patente.
+                                    {t('presentation.pagopa_warning_note')}
                                 </p>
                             </div>
                         </div>
@@ -188,10 +188,10 @@ export const PresentationSection: React.FC = () => {
                             <CreditCard className="w-8 h-8 text-white" />
                         </div>
                         <h4 className="text-white font-bold text-2xl mb-2 tracking-tight">
-                            Accedi al Portale
+                            {t('presentation.pagopa_card_title')}
                         </h4>
                         <p className="text-blue-100 text-sm font-medium bg-black/20 px-3 py-1 rounded-full backdrop-blur-sm border border-white/10 group-hover:bg-white/20 transition-colors">
-                            Paga bollettini online <ExternalLink className="w-3 h-3 inline ml-1" />
+                            {t('presentation.pagopa_card_subtitle')} <ExternalLink className="w-3 h-3 inline ml-1" />
                         </p>
                     </div>
                  </a>
