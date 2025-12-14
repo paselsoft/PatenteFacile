@@ -1,28 +1,39 @@
 import React from 'react';
-import { Info } from 'lucide-react';
+import { Info, ExternalLink } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-900 text-white py-12 mt-auto">
+    <footer className="bg-slate-900 text-white py-16 mt-auto">
         <div className="container mx-auto px-4 flex flex-col items-center text-center">
-            <h3 className="text-xl font-bold mb-4 flex items-center justify-center">
-                <span className="bg-white/10 p-2 rounded-lg mr-2">
+            <h3 className="text-2xl font-bold mb-6 flex items-center justify-center tracking-tight">
+                <span className="bg-white/10 p-2 rounded-xl mr-3 border border-white/10">
                     PF
                 </span>
-                Guida Patente Facile
+                Patente Facile
             </h3>
             
-            <p className="opacity-70 text-sm max-w-md mx-auto mb-6 leading-relaxed">
+            <p className="opacity-60 text-sm max-w-lg mx-auto mb-8 leading-relaxed">
                 Questa guida è a scopo informativo e semplifica la normativa vigente della Motorizzazione Civile.
-                Verifica sempre le informazioni ufficiali sul Portale dell'Automobilista.
+                Non sostituisce in alcun modo le fonti ufficiali.
             </p>
             
-            <div className="flex items-center text-xs text-gray-500 bg-black/20 px-4 py-2 rounded-full">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                 <a 
+                    href="https://www.ilportaledellautomobilista.it/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center text-sm text-blue-300 hover:text-white transition-colors px-4 py-2 rounded-full bg-white/5 hover:bg-white/10"
+                >
+                    Portale dell'Automobilista <ExternalLink className="w-3 h-3 ml-2" />
+                 </a>
+            </div>
+            
+            <div className="flex items-center text-xs text-gray-400 bg-black/30 px-4 py-2 rounded-full border border-white/5">
                 <Info className="w-3 h-3 mr-2" />
                 <span>Aggiornato al 2024</span>
             </div>
             
-            <div className="mt-8 pt-8 border-t border-white/10 w-full text-center">
+            <div className="mt-12 pt-8 border-t border-white/5 w-full text-center">
                 <p className="text-xs text-gray-600">
                     &copy; {new Date().getFullYear()} Patente Facile. Tutti i diritti riservati.
                 </p>
