@@ -19,7 +19,7 @@ export const ChecklistToggle: React.FC<ChecklistToggleProps> = ({
   <label 
       htmlFor={id}
       className={`
-          cursor-pointer flex items-center justify-between p-3 rounded-xl border-2 transition-all duration-200 select-none
+          cursor-pointer flex items-center justify-between p-3 rounded-xl border-2 transition-all duration-300 select-none
           ${checked ? 'bg-blue-50 border-motorizzazione shadow-sm' : 'bg-white border-gray-100 hover:border-blue-200'}
       `}
   >
@@ -37,11 +37,11 @@ export const ChecklistToggle: React.FC<ChecklistToggleProps> = ({
           <span className={checked ? 'text-motorizzazione font-bold' : ''}>{label}</span>
       </div>
       <div className={`
-          relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors 
+          relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors duration-300
           ${checked ? 'bg-motorizzazione' : 'bg-gray-300'}
       `}>
           <span className={`
-              inline-block h-4 w-4 transform rounded-full bg-white transition-transform shadow-sm
+              inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-300 shadow-sm
               ${checked ? 'translate-x-6' : 'translate-x-1'}
           `} />
       </div>

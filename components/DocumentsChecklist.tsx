@@ -59,11 +59,11 @@ export const DocumentsChecklist: React.FC = () => {
                         </div>
                         <button 
                             onClick={() => setShowResetConfirm(true)}
-                            className="p-2 hover:bg-white/10 rounded-full transition-colors group focus:outline-none focus:ring-2 focus:ring-white"
+                            className="p-2 hover:bg-white/10 rounded-full transition-colors duration-300 group focus:outline-none focus:ring-2 focus:ring-white"
                             title="Resetta checklist"
                             aria-label="Resetta checklist"
                         >
-                            <RefreshCw className="w-5 h-5 opacity-70 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" />
+                            <RefreshCw className="w-5 h-5 opacity-70 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-slow" />
                         </button>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ export const DocumentsChecklist: React.FC = () => {
                 {/* Progress Bar */}
                 <div className="w-full bg-gray-100 h-2">
                     <div 
-                        className={`h-2 transition-all duration-700 ease-out ${isComplete ? 'bg-accent-green' : 'bg-blue-500'}`}
+                        className={`h-2 transition-all duration-slow ease-out ${isComplete ? 'bg-accent-green' : 'bg-blue-500'}`}
                         style={{ width: `${progress}%` }}
                     ></div>
                 </div>
@@ -158,7 +158,7 @@ export const DocumentsChecklist: React.FC = () => {
                         src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&q=80&w=600" 
                         alt="Pianificazione documenti" 
                         loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-cinematic"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
                         <p className="text-white font-medium text-lg leading-tight">

@@ -45,6 +45,15 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
+                    // Design System Standardization: Transitions
+                    transitionDuration: {
+                        DEFAULT: '300ms', // Standard UI interaction speed
+                        'slow': '500ms',  // For larger movements (panels, progress bars)
+                        'cinematic': '700ms', // For image reveals and background effects
+                    },
+                    transitionTimingFunction: {
+                        DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)', // Standard Ease-in-out for premium feel
+                    }
                 }
             }
         }

@@ -33,7 +33,7 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({ isOpen, on
 
   return (
     <div 
-        className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" 
+        className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300" 
         onClick={onClose}
         role="dialog"
         aria-modal="true"
@@ -42,7 +42,7 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({ isOpen, on
     >
         <div 
             ref={modalRef}
-            className="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden animate-in zoom-in-95 duration-200 p-6 text-center focus:outline-none" 
+            className="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden animate-in zoom-in-95 duration-300 p-6 text-center focus:outline-none" 
             onClick={e => e.stopPropagation()}
             tabIndex={-1}
         >
@@ -58,13 +58,13 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({ isOpen, on
             <div className="flex gap-3">
                 <button 
                     onClick={onClose}
-                    className="flex-1 py-2.5 px-4 rounded-xl border border-gray-200 font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400"
+                    className="flex-1 py-2.5 px-4 rounded-xl border border-gray-200 font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
                 >
                     Annulla
                 </button>
                 <button 
                     onClick={onConfirm}
-                    className="flex-1 py-2.5 px-4 rounded-xl bg-red-600 font-semibold text-white hover:bg-red-700 shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                    className="flex-1 py-2.5 px-4 rounded-xl bg-red-600 font-semibold text-white hover:bg-red-700 shadow-md hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                 >
                     Reset
                 </button>

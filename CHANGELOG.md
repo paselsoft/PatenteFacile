@@ -5,6 +5,11 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 ## [Unreleased]
 
 ### Aggiunto
+- **Design System Standard:** Centralizzata la configurazione delle animazioni in `tailwind.config` (dentro `index.html`).
+    - Default Transition: **300ms** (Interfaccia, Bottoni, Hover)
+    - Slow Transition: **500ms** (Barre di progresso, Pannelli grandi)
+    - Cinematic Transition: **700ms** (Immagini, Effetti di sfondo)
+    - Standard Curve: `cubic-bezier(0.4, 0, 0.2, 1)` per un feeling fluido e professionale.
 - **TypeScript Strict Mode:** Attivata la modalità rigorosa (`"strict": true`) nel `tsconfig.json`. Questo include controlli avanzati come `strictNullChecks` e `noImplicitAny` per prevenire bug a runtime e garantire la massima qualità del codice come richiesto dal report di analisi.
 - **Unit Testing:** Creata suite di test completa per `useChecklist.ts` utilizzando Vitest e React Testing Library. Copertura test per logica filtri, persistenza localStorage, calcolo progresso e reset.
 - **PWA (Progressive Web App):** Aggiunto file `manifest.json` e configurazioni meta per rendere l'applicazione installabile su dispositivi desktop e mobile ("Aggiungi a schermata Home").
@@ -20,6 +25,7 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 - **Accessibilità Modali:** Aggiunti attributi ARIA (`role="dialog"`, `aria-modal`) e listener per il tasto `Escape` su tutti i modali (JotForm e Checklist).
 
 ### Modificato
+- **Standardizzazione Componenti:** Aggiornati `Navbar`, `DocumentsChecklist` e sottocomponenti (`ChecklistItem`, `ChecklistToggle`, `ResetConfirmModal`) per utilizzare le nuove durate standard (300ms/500ms/700ms) eliminando le transizioni incoerenti.
 - **Index HTML:** Ristrutturato l'`head` del documento per includere i riferimenti al manifest, icone Apple Touch, theme-color e metadati social.
 - **Type Safety LocalStorage:** Migliorata la gestione degli errori nel custom hook `useLocalStorage` per gestire correttamente i tipi di errore `unknown` nei blocchi try/catch.
 - **Contrasto Header:** Aumentato il contrasto del testo secondario nell'hero section (da `text-blue-100` a `text-blue-50`) per migliorare la leggibilità sullo sfondo gradiente.
