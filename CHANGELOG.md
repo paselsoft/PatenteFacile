@@ -5,6 +5,7 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 ## [Unreleased]
 
 ### Fix Critici (Post-Review)
+- **UI Bugfix PagoPA:** Rimossa l'altezza forzata (`h-full`) e l'espansione automatica (`flex-grow`) dalla card "Versamenti PagoPA". Questo eliminava lo spazio bianco vuoto eccessivo visibile quando la colonna adiacente ("Modalità di Presentazione") era molto più lunga. La card ora si adatta naturalmente al proprio contenuto.
 - **Entry Point:** Aggiunto il tag script mancante in `index.html` per caricare l'applicazione React (`index.tsx`). Senza questo, l'app mostrava una pagina bianca.
 - **Animazioni:** Risolto problema con classi di animazione "phantom" (`animate-in`, `fade-in`, etc.) che dipendevano da un plugin non presente.
     - Definiti keyframes standard (`fade-in`, `zoom-in`, `slide-in`) direttamente nella configurazione Tailwind in `index.html`.

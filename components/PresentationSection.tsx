@@ -137,8 +137,8 @@ export const PresentationSection: React.FC = () => {
             </div>
 
             {/* PagoPA Information */}
-            <div className="flex flex-col h-full space-y-8">
-                <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 flex-grow relative overflow-hidden">
+            <div className="flex flex-col space-y-8">
+                <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 flex-grow-0 relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-4 opacity-5">
                          <Building2 className="w-32 h-32" />
                     </div>
