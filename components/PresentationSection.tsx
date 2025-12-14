@@ -42,7 +42,7 @@ export const PresentationSection: React.FC = () => {
                         src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800" 
                         alt="Ufficio e documenti" 
                         loading="lazy"
-                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-cinematic"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
                         <h3 className="text-white text-xl font-bold p-6 flex items-center shadow-sm">
@@ -175,7 +175,7 @@ export const PresentationSection: React.FC = () => {
                         src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=800" 
                         alt="Pagamenti elettronici" 
                         loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-cinematic"
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                         <span className="text-white font-bold text-lg border-2 border-white px-4 py-2 rounded uppercase tracking-widest">

@@ -45,7 +45,7 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
-                    // Design System Standardization: Transitions
+                    // Design System Standardization: Transitions & Animations
                     transitionDuration: {
                         DEFAULT: '300ms', // Standard UI interaction speed
                         'slow': '500ms',  // For larger movements (panels, progress bars)
@@ -53,6 +53,15 @@
                     },
                     transitionTimingFunction: {
                         DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)', // Standard Ease-in-out for premium feel
+                    },
+                    keyframes: {
+                        'fade-in-down': {
+                            '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    },
+                    animation: {
+                        'fade-in-down': 'fade-in-down 0.8s ease-out forwards',
                     }
                 }
             }

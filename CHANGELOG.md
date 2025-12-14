@@ -5,6 +5,7 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 ## [Unreleased]
 
 ### Aggiunto
+- **Design System Animation:** Aggiunta animazione custom `fade-in-down` in `tailwind.config` per rendere funzionante l'entrata dell'icona nell'Header.
 - **Offline Ready (Service Worker):** Implementato un Service Worker (`service-worker.js`) che abilita il funzionamento offline dell'applicazione.
     - Strategia **Network-First** per la shell HTML (assicura che l'app si aggiorni quando c'è rete).
     - Strategia **Cache-First** per asset pesanti (immagini Unsplash, font, librerie CDN) per prestazioni fulminee.
@@ -29,6 +30,7 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 - **Accessibilità Modali:** Aggiunti attributi ARIA (`role="dialog"`, `aria-modal`) e listener per il tasto `Escape` su tutti i modali (JotForm e Checklist).
 
 ### Modificato
+- **Design System Enforcement:** Aggiornati `PresentationSection` e `CostsSection` per utilizzare il token `duration-cinematic` (700ms) al posto di valori manuali, garantendo coerenza visiva al 100%.
 - **Entry Point:** Aggiornato `index.tsx` per registrare il Service Worker al caricamento della pagina.
 - **Standardizzazione Componenti:** Aggiornati `Navbar`, `DocumentsChecklist` e sottocomponenti (`ChecklistItem`, `ChecklistToggle`, `ResetConfirmModal`) per utilizzare le nuove durate standard (300ms/500ms/700ms) eliminando le transizioni incoerenti.
 - **Index HTML:** Ristrutturato l'`head` del documento per includere i riferimenti al manifest, icone Apple Touch, theme-color e metadati social.
