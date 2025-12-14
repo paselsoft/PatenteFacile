@@ -37,6 +37,7 @@ export const CostsSection: React.FC = () => {
                      <img 
                         src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&q=80&w=600" 
                         alt="Calcolo costi" 
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-blue-900/10 mix-blend-multiply"></div>

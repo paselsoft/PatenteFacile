@@ -6,6 +6,7 @@ L'applicazione offre una panoramica chiara dei costi, dei passaggi necessari e f
 
 ## Funzionalità Principali
 
+*   **Progressive Web App (PWA):** L'applicazione è installabile su dispositivi mobili e desktop, funziona a schermo intero e offre un'esperienza nativa.
 *   **Guida Passo-Passo:** Una visualizzazione chiara dei 4 step fondamentali (Visita Medica, Domanda, Teoria, Pratica).
 *   **Gestione Modulo TT 2112:**
     *   **Compilazione Online:** Integrazione via modale con JotForm per compilare il modulo burocratico direttamente dal browser.
@@ -16,8 +17,17 @@ L'applicazione offre una panoramica chiara dei costi, dei passaggi necessari e f
         *   **Cittadini Extra-UE:** Aggiunge permesso di soggiorno.
         *   **Delegato:** Aggiunge documenti per la delega.
     *   **Progresso Reale:** Il completamento al 100% è calcolato solo sui documenti pertinenti al profilo selezionato.
-    *   Salvataggio automatico dei progressi e delle preferenze nel browser (LocalStorage).
-    *   **Sistema Modali Custom:** Finestre popup integrate nel design (non native del browser) per visualizzare i dettagli dei documenti e confermare azioni critiche come il reset della lista.
+    *   **Salvataggio Dati:** Utilizzo di Custom Hooks per salvare progressi e preferenze nel browser (LocalStorage) in modo sicuro.
+    *   **Sistema Modali Custom:** Finestre popup integrate nel design per visualizzare dettagli e conferme.
+*   **SEO & Social Sharing:** Ottimizzata per i motori di ricerca con meta tag avanzati e supporto Open Graph per anteprime ricche sui social network.
+*   **Accessibilità e UX:**
+    *   Navigazione completa da tastiera (Tab, Esc, Enter).
+    *   Attributi ARIA corretti per screen reader.
+    *   Checkbox e Toggle semantici.
+    *   Skip Link per accesso rapido ai contenuti.
+*   **Robustezza:**
+    *   **Error Boundary:** Protezione contro crash imprevisti dell'applicazione.
+    *   **Performance:** Ottimizzazione rendering tramite `useMemo`, `useCallback` e lazy loading delle immagini.
 *   **Navigazione Intelligente:** Barra di navigazione fissa (Sticky) con scorrimento fluido (Smooth Scroll).
 *   **Tabella Costi:** Un riepilogo chiaro e trasparente dei costi fissi PagoPA.
 *   **Design Responsivo:** Ottimizzato per dispositivi mobili e desktop utilizzando Tailwind CSS.
@@ -28,14 +38,18 @@ L'applicazione offre una panoramica chiara dei costi, dei passaggi necessari e f
 *   **Tailwind CSS:** Framework CSS utility-first.
 *   **Lucide React:** Libreria di icone vettoriali.
 *   **LocalStorage API:** Per la persistenza dei dati.
+*   **PWA Manifest:** Per l'installabilità dell'applicazione.
 
 ## Struttura del Progetto
 
 *   `src/index.tsx`: Entry point.
-*   `src/App.tsx`: Layout principale.
+*   `src/App.tsx`: Layout principale con Error Boundary.
 *   `src/components/`: Componenti modulari.
+    *   `src/components/checklist/`: Sottocomponenti ottimizzati per la checklist.
+*   `src/hooks/`: Custom Hooks (useChecklist, useLocalStorage, useScrollTo).
 *   `src/constants.tsx`: Dati statici (testi, costi, documenti).
 *   `src/types.ts`: Definizioni TypeScript.
+*   `manifest.json`: Configurazione PWA.
 
 ## Installazione e Avvio
 

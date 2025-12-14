@@ -1,11 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { AlertTriangle, UserCheck, Users, Building2, Download, FileText, Printer, PenLine, X, ExternalLink } from 'lucide-react';
 
 export const PresentationSection: React.FC = () => {
   const [showFormModal, setShowFormModal] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  // Focus management and Escape key listener for A11y
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && showFormModal) {
+        setShowFormModal(false);
+      }
+    };
+
+    if (showFormModal) {
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', handleKeyDown);
+      modalRef.current?.focus();
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [showFormModal]);
 
   return (
-    <section id="presentazione" className="scroll-mt-8 relative">
+    <section id="presentazione" className="scroll-mt-24 relative">
         <h2 className="text-3xl font-bold text-motorizzazione text-center mb-10">
             Chi Può Presentare la Domanda
         </h2>
@@ -18,6 +41,7 @@ export const PresentationSection: React.FC = () => {
                     <img 
                         src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800" 
                         alt="Ufficio e documenti" 
+                        loading="lazy"
                         className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
@@ -30,7 +54,6 @@ export const PresentationSection: React.FC = () => {
 
                 <div className="p-6">
                     {/* Highlighted Action Box */}
-                    {/* Responsive logic: Adjusted to accommodate two buttons */}
                     <div className="mb-6 p-4 bg-blue-50/50 border border-blue-100 rounded-xl transition-all hover:bg-blue-50 hover:border-blue-200 shadow-sm">
                         <div className="flex flex-col sm:flex-row items-start gap-4 mb-4">
                              <div className="p-2.5 bg-white text-motorizzazione rounded-lg shadow-sm border border-blue-50 flex-shrink-0">
@@ -52,7 +75,7 @@ export const PresentationSection: React.FC = () => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <button 
                                 onClick={() => setShowFormModal(true)}
-                                className="col-span-1 bg-accent-green hover:bg-emerald-600 text-white text-sm font-bold py-2.5 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center group relative overflow-hidden"
+                                className="col-span-1 bg-accent-green hover:bg-emerald-600 text-white text-sm font-bold py-2.5 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center group relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                             >
                                 <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-3 w-3">
                                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
@@ -66,7 +89,7 @@ export const PresentationSection: React.FC = () => {
                                 href="https://www.ilportaledellautomobilista.it/documents/56611/128846273/TT2112.pdf/826c655d-eba2-465a-8ab8-c618bddf1d4e" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="col-span-1 bg-white hover:bg-gray-50 text-motorizzazione border border-motorizzazione/30 text-sm font-bold py-2.5 px-4 rounded-lg shadow-sm hover:shadow transition-all duration-300 flex items-center justify-center group whitespace-nowrap"
+                                className="col-span-1 bg-white hover:bg-gray-50 text-motorizzazione border border-motorizzazione/30 text-sm font-bold py-2.5 px-4 rounded-lg shadow-sm hover:shadow transition-all duration-300 flex items-center justify-center group whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-motorizzazione focus:ring-offset-2"
                             >
                                 <Download className="w-4 h-4 mr-2" />
                                 Scarica PDF Vuoto
@@ -151,6 +174,7 @@ export const PresentationSection: React.FC = () => {
                     <img 
                         src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=800" 
                         alt="Pagamenti elettronici" 
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
@@ -164,28 +188,40 @@ export const PresentationSection: React.FC = () => {
 
         {/* JOTFORM MODAL */}
         {showFormModal && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-300" onClick={() => setShowFormModal(false)}>
-                <div className="bg-white sm:rounded-2xl shadow-2xl w-full max-w-4xl h-full sm:h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-300" onClick={e => e.stopPropagation()}>
+            <div 
+                className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-300"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-title"
+                onClick={() => setShowFormModal(false)}
+            >
+                <div 
+                    ref={modalRef}
+                    className="bg-white sm:rounded-2xl shadow-2xl w-full max-w-4xl h-full sm:h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-300 focus:outline-none" 
+                    onClick={e => e.stopPropagation()}
+                    tabIndex={-1}
+                >
                     
                     {/* Modal Header */}
                     <div className="bg-motorizzazione text-white p-4 flex justify-between items-center flex-shrink-0">
                         <div className="flex items-center">
                             <PenLine className="w-5 h-5 mr-2" />
-                            <h3 className="font-bold text-lg">Compilazione Guidata TT 2112</h3>
+                            <h3 id="modal-title" className="font-bold text-lg">Compilazione Guidata TT 2112</h3>
                         </div>
                         <div className="flex items-center gap-2">
                             <a 
                                 href="https://form.jotform.com/231245211763044" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="p-2 hover:bg-white/20 rounded-full transition-colors hidden sm:block"
+                                className="p-2 hover:bg-white/20 rounded-full transition-colors hidden sm:block focus:outline-none focus:ring-2 focus:ring-white"
                                 title="Apri in nuova scheda"
                             >
                                 <ExternalLink className="w-5 h-5" />
                             </a>
                             <button 
                                 onClick={() => setShowFormModal(false)}
-                                className="p-2 hover:bg-white/20 rounded-full transition-colors"
+                                className="p-2 hover:bg-white/20 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+                                aria-label="Chiudi modale"
                             >
                                 <X className="w-6 h-6" />
                             </button>
@@ -199,9 +235,8 @@ export const PresentationSection: React.FC = () => {
                         </div>
                         <iframe 
                             src="https://form.jotform.com/231245211763044" 
-                            className="w-full h-full relative z-10" 
+                            className="w-full h-full relative z-10 min-h-[500px]" 
                             frameBorder="0"
-                            style={{ minHeight: '500px' }}
                             allow="geolocation; microphone; camera"
                             title="Modulo TT 2112"
                         ></iframe>

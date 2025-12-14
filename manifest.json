@@ -1,0 +1,22 @@
+{
+  "short_name": "PatenteFacile",
+  "name": "Patente Facile - Guida Interattiva",
+  "description": "La guida completa passo-passo per il conseguimento della patente di guida B in Italia.",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3097/3097180.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3097/3097180.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#1D4ED8",
+  "background_color": "#ffffff",
+  "orientation": "portrait"
+}

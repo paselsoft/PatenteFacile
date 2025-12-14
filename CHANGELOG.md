@@ -5,6 +5,27 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 ## [Unreleased]
 
 ### Aggiunto
+- **PWA (Progressive Web App):** Aggiunto file `manifest.json` e configurazioni meta per rendere l'applicazione installabile su dispositivi desktop e mobile ("Aggiungi a schermata Home").
+- **SEO Optimization:** Implementati meta tag completi (`description`, `keywords`, `author`) nell'`index.html` per migliorare l'indicizzazione sui motori di ricerca.
+- **Social Sharing (Open Graph):** Aggiunti protocolli Open Graph (Facebook/LinkedIn) e Twitter Card per generare anteprime ricche (con immagini e descrizioni personalizzate) quando il link viene condiviso.
+- **Performance:** Implementato "Lazy Loading" (`loading="lazy"`) su tutte le immagini non critiche (Presentazione, Documenti, Procedura, Costi) per migliorare il caricamento iniziale della pagina (LCP) e ridurre il consumo di banda.
+- **Refactoring Architetturale:** Suddivisione del componente `DocumentsChecklist` in sottocomponenti modulari (`ChecklistToggle`, `ChecklistItem`, `ResetConfirmModal`, `ChecklistDetailModal`).
+- **Hook useChecklist:** Creazione di un custom hook dedicato (`useChecklist.ts`) per centralizzare la logica di business, la persistenza e il calcolo del progresso della checklist.
+- **Robustezza Applicazione:** Introdotto componente `ErrorBoundary` per catturare errori imprevisti e prevenire crash dell'interfaccia.
+- **Accessibilità Tastiera:** Aggiunto "Skip Link" nascosto per permettere agli utenti di saltare direttamente al contenuto principale.
+- **Custom Hooks:** Creati hooks riutilizzabili `useLocalStorage` (per persistenza sicura) e `useScrollTo` (per navigazione fluida centralizzata).
+- **Semantica Checkbox:** I controlli della checklist e i toggle ora usano input nativi `<input type="checkbox">` nascosti con etichette `<label>`, garantendo accessibilità a screen reader e navigazione da tastiera.
+- **Accessibilità Modali:** Aggiunti attributi ARIA (`role="dialog"`, `aria-modal`) e listener per il tasto `Escape` su tutti i modali (JotForm e Checklist).
+
+### Modificato
+- **Index HTML:** Ristrutturato l'`head` del documento per includere i riferimenti al manifest, icone Apple Touch, theme-color e metadati social.
+- **Type Safety LocalStorage:** Migliorata la gestione degli errori nel custom hook `useLocalStorage` per gestire correttamente i tipi di errore `unknown` nei blocchi try/catch.
+- **Contrasto Header:** Aumentato il contrasto del testo secondario nell'hero section (da `text-blue-100` a `text-blue-50`) per migliorare la leggibilità sullo sfondo gradiente.
+- **Pulizia Codice:** Rimossi alias e import ridondanti nel componente `ChecklistItem`.
+- **Refactoring Checklist:** Riscritto `DocumentsChecklist` per utilizzare il nuovo hook di storage e `useMemo` per ottimizzare le performance di rendering.
+- **Accessibilità Logo:** Il logo nella Navbar è stato convertito da `div` a `button` per essere accessibile tramite tastiera.
+- **Responsive Menu:** Corretto bug dell'altezza massima del menu mobile che poteva tagliare le voci su schermi piccoli.
+- **Immagini Responsive:** Ottimizzata l'altezza dell'immagine sticky nella sezione "Procedura" per adattarsi meglio a diverse risoluzioni.
 - **Compilazione Online TT 2112:** Integrato un sistema modale con iframe per permettere agli utenti di compilare e scaricare il modello TT 2112 direttamente tramite JotForm, senza lasciare la pagina.
 - **Pulsanti Azione TT 2112:** Ridisegnata la sezione di download del modello per includere due opzioni distinte: "Compila Online" (Primaria) e "Scarica PDF Vuoto" (Secondaria).
 - **Modale Conferma Reset:** Implementata una finestra di dialogo personalizzata (Custom Modal) per la conferma del reset della checklist. Sostituisce il `window.confirm` nativo per garantire compatibilità con le preview sandboxed e migliorare la coerenza visiva.
@@ -31,18 +52,8 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 - **Persistenza Dati:** Utilizzo di `localStorage` esteso anche alle preferenze di personalizzazione (Minore/Extra-UE).
 - **Sezione Delegati Migliorata:** Aggiunto un header visivo, icone dedicate e indentazione ("sottovoci") per i documenti relativi alla delega.
 
-### Modificato
-- **Reset Checklist:** Rimossa la dipendenza da API native bloccanti (`window.confirm`) a favore di componenti React controllati.
-- **Requisiti Delegato:** Aggiornata la sezione documenti per specificare che per il delegato è richiesta anche la fotocopia del documento, oltre all'originale.
-- **Layout Responsivo Box TT 2112:** Implementata una logica adattiva avanzata (Stack->Row->Stack->Row) per gestire correttamente lo spazio su schermi laptop/tablet quando la griglia si divide, prevenendo l'overflow del pulsante di download.
-- **Layout Box TT 2112:** Corretto l'allineamento del pulsante di download per centrarlo verticalmente ("dentro il box") invece di allinearlo in alto.
-- **UI Settings Checklist:** Ridisegnato il pannello filtri della checklist per renderlo più chiaro e integrato.
-- Refactoring completo `DocumentsChecklist` per gestire layout responsive (Grid) e logica complessa.
-- Riorganizzazione della sezione Documenti per spostare l'info box delle foto nella sidebar su desktop.
-- Aggiornata la logica di calcolo della percentuale di completamento per riflettere solo i documenti pertinenti alla selezione dell'utente.
-- Spostati i documenti specifici in liste separate nel file `constants.tsx`.
-
 ### Corretto
+- **Gestione Errori LocalStorage:** L'hook `useLocalStorage` ora gestisce correttamente errori di parsing JSON e ambienti SSR.
 - Risolto problema UX dove gli utenti non potevano raggiungere il 100% di completamento senza spuntare documenti non necessari (es. Permesso di Soggiorno per cittadini UE).
 - **Correzione Testuale Presentazione:** Rimossa la menzione errata alle "agenzie di pratiche auto" per la presentazione della domanda. Per il conseguimento della patente, sono abilitate solo le autoscuole.
 - **Correzione Step 3 (Teoria):** Aggiornata la descrizione per chiarire che dopo l'esame di teoria è necessario rivolgersi ad un'autoscuola per il rilascio del Foglio Rosa e le guide obbligatorie.

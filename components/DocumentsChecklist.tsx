@@ -1,128 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { DOCUMENTS_DATA, DELEGATE_DOCUMENTS_DATA, EXTRA_EU_DOCUMENTS_DATA, MINOR_DOCUMENTS_DATA } from '../constants';
+import React, { useState } from 'react';
+import { ClipboardList, RefreshCw, Settings, Camera, Trophy, Sparkles, Globe, Baby, UserCog } from 'lucide-react';
+import { useChecklist } from '../hooks/useChecklist';
 import { ChecklistItem } from '../types';
-import { Check, ClipboardList, RefreshCw, Info, X, UserCog, Globe, Baby, Settings, Camera, Trophy, Sparkles, AlertTriangle } from 'lucide-react';
+import { ChecklistToggle } from './checklist/ChecklistToggle';
+import { ChecklistItemRow } from './checklist/ChecklistItem';
+import { ResetConfirmModal } from './checklist/ResetConfirmModal';
+import { ChecklistDetailModal } from './checklist/ChecklistDetailModal';
 
 export const DocumentsChecklist: React.FC = () => {
-  const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
-  
-  // Toggle States
-  const [isDelegateMode, setIsDelegateMode] = useState(false);
-  const [isExtraEu, setIsExtraEu] = useState(false);
-  const [isMinor, setIsMinor] = useState(false);
-  
-  const [isLoaded, setIsLoaded] = useState(false);
+  // Business Logic from Hook
+  const {
+    checkedItems,
+    isDelegateMode, setIsDelegateMode,
+    isExtraEu, setIsExtraEu,
+    isMinor, setIsMinor,
+    currentList,
+    progress,
+    isComplete,
+    toggleItem,
+    resetChecklist
+  } = useChecklist();
+
+  // Local UI State for Modals
   const [selectedItem, setSelectedItem] = useState<ChecklistItem | null>(null);
-  
-  // State for Custom Reset Modal
   const [showResetConfirm, setShowResetConfirm] = useState(false);
 
-  // Load state from localStorage on mount
-  useEffect(() => {
-    const savedChecklist = localStorage.getItem('patente_checklist');
-    const savedDelegateMode = localStorage.getItem('patente_delegate_mode');
-    const savedExtraEu = localStorage.getItem('patente_extra_eu');
-    const savedMinor = localStorage.getItem('patente_minor');
-    
-    if (savedChecklist) {
-      try {
-        setCheckedItems(JSON.parse(savedChecklist));
-      } catch (e) {
-        console.error("Failed to parse checklist", e);
-      }
-    }
-    
-    if (savedDelegateMode) setIsDelegateMode(savedDelegateMode === 'true');
-    if (savedExtraEu) setIsExtraEu(savedExtraEu === 'true');
-    if (savedMinor) setIsMinor(savedMinor === 'true');
-
-    setIsLoaded(true);
-  }, []);
-
-  // Save state to localStorage on change
-  useEffect(() => {
-    if (isLoaded) {
-      localStorage.setItem('patente_checklist', JSON.stringify(checkedItems));
-      localStorage.setItem('patente_delegate_mode', String(isDelegateMode));
-      localStorage.setItem('patente_extra_eu', String(isExtraEu));
-      localStorage.setItem('patente_minor', String(isMinor));
-    }
-  }, [checkedItems, isDelegateMode, isExtraEu, isMinor, isLoaded]);
-
-  const toggleItem = (id: string) => {
-    setCheckedItems(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
-
-  const handleResetClick = () => {
-    setShowResetConfirm(true);
-  };
-
   const confirmReset = () => {
-    setCheckedItems({});
+    resetChecklist();
     setShowResetConfirm(false);
   };
 
-  // Build the dynamic list based on toggles
-  const currentList = [
-      ...DOCUMENTS_DATA,
-      ...(isExtraEu ? EXTRA_EU_DOCUMENTS_DATA : []),
-      ...(isMinor ? MINOR_DOCUMENTS_DATA : []),
-      ...(isDelegateMode ? DELEGATE_DOCUMENTS_DATA : [])
-  ];
-
-  const totalItems = currentList.length;
-  const completedItems = currentList.filter(item => checkedItems[item.id]).length;
-  const progress = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
-  const isComplete = progress === 100 && totalItems > 0;
-
-  // Helper component for toggle switches
-  const ToggleSwitch = ({ 
-    label, 
-    checked, 
-    onChange, 
-    icon: Icon 
-  }: { 
-    label: string; 
-    checked: boolean; 
-    onChange: (val: boolean) => void;
-    icon: React.ElementType;
-  }) => (
-    <div 
-        onClick={() => onChange(!checked)}
-        className={`
-            cursor-pointer flex items-center justify-between p-3 rounded-xl border-2 transition-all duration-200 select-none
-            ${checked ? 'bg-blue-50 border-motorizzazione shadow-sm' : 'bg-white border-gray-100 hover:border-blue-200'}
-        `}
-    >
-        <div className="flex items-center text-sm sm:text-base font-medium text-gray-700">
-            <div className={`p-1.5 rounded-lg mr-3 ${checked ? 'bg-motorizzazione text-white' : 'bg-gray-100 text-gray-500'}`}>
-                <Icon className="w-5 h-5" />
-            </div>
-            <span className={checked ? 'text-motorizzazione font-bold' : ''}>{label}</span>
-        </div>
-        <div className={`
-            relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors 
-            ${checked ? 'bg-motorizzazione' : 'bg-gray-300'}
-        `}>
-            <span className={`
-                inline-block h-4 w-4 transform rounded-full bg-white transition-transform shadow-sm
-                ${checked ? 'translate-x-6' : 'translate-x-1'}
-            `} />
-        </div>
-    </div>
-  );
-
   return (
-    <section id="documenti" className="scroll-mt-8 relative">
+    <section id="documenti" className="scroll-mt-24 relative">
         <div className="grid lg:grid-cols-3 gap-8 items-start">
             
             {/* Main Checklist Column */}
             <div className="lg:col-span-2 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden relative">
                 
-                {/* Header */}
+                {/* Header Section */}
                 <div className="bg-motorizzazione p-6 text-white flex flex-col sm:flex-row justify-between items-center relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
                     
@@ -136,16 +51,17 @@ export const DocumentsChecklist: React.FC = () => {
                         </div>
                     </div>
                     
-                    {/* Progress Circle */}
+                    {/* Progress Circle & Reset */}
                     <div className="flex items-center space-x-5 relative z-10">
                         <div className="text-right">
                             <span className="block text-3xl font-bold leading-none">{progress}%</span>
                             <span className="text-[10px] uppercase tracking-wider text-blue-200 font-semibold">Completato</span>
                         </div>
                         <button 
-                            onClick={handleResetClick}
-                            className="p-2 hover:bg-white/10 rounded-full transition-colors group"
+                            onClick={() => setShowResetConfirm(true)}
+                            className="p-2 hover:bg-white/10 rounded-full transition-colors group focus:outline-none focus:ring-2 focus:ring-white"
                             title="Resetta checklist"
+                            aria-label="Resetta checklist"
                         >
                             <RefreshCw className="w-5 h-5 opacity-70 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" />
                         </button>
@@ -160,7 +76,7 @@ export const DocumentsChecklist: React.FC = () => {
                     ></div>
                 </div>
 
-                {/* Configuration Toggle Bar - Always Visible */}
+                {/* Configuration Toggle Bar */}
                 <div className="border-b border-gray-100 bg-gray-50/50 p-6">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="flex items-center text-sm font-bold tracking-wide text-gray-700">
@@ -171,19 +87,22 @@ export const DocumentsChecklist: React.FC = () => {
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <ToggleSwitch 
+                        <ChecklistToggle 
+                            id="toggle-extra-eu"
                             label="Cittadino Extra-UE" 
                             checked={isExtraEu} 
                             onChange={setIsExtraEu}
                             icon={Globe}
                         />
-                        <ToggleSwitch 
+                        <ChecklistToggle 
+                            id="toggle-minor"
                             label="Minorenne" 
                             checked={isMinor} 
                             onChange={setIsMinor}
                             icon={Baby}
                         />
-                        <ToggleSwitch 
+                        <ChecklistToggle 
+                            id="toggle-delegate"
                             label="Delega a Terzi" 
                             checked={isDelegateMode} 
                             onChange={setIsDelegateMode}
@@ -194,7 +113,7 @@ export const DocumentsChecklist: React.FC = () => {
 
                 {/* Success Banner */}
                 {isComplete && (
-                    <div className="mx-4 mt-4 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center animate-in zoom-in-95 duration-300">
+                    <div className="mx-4 mt-4 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center animate-in zoom-in-95 duration-300" role="alert">
                         <div className="p-2 bg-green-100 rounded-full mr-4 text-green-600">
                             <Trophy className="w-6 h-6" />
                         </div>
@@ -207,7 +126,7 @@ export const DocumentsChecklist: React.FC = () => {
                     </div>
                 )}
 
-                {/* List */}
+                {/* Items List */}
                 <div className="p-4 sm:p-6 space-y-3">
                     {currentList.length === 0 ? (
                         <div className="text-center py-12 text-gray-400 flex flex-col items-center">
@@ -217,82 +136,16 @@ export const DocumentsChecklist: React.FC = () => {
                              <p>Nessun documento richiesto con i filtri attuali.</p>
                         </div>
                     ) : (
-                        currentList.map((item) => {
-                            const isChecked = !!checkedItems[item.id];
-                            const isDelegateItem = item.id.startsWith('del_');
-                            const isExtraEuItem = item.id === 'soggiorno';
-                            const isMinorItem = item.id.startsWith('doc_genitore');
-
-                            const isFirstDelegateItem = isDelegateMode && isDelegateItem && item.id === DELEGATE_DOCUMENTS_DATA[0].id;
-
-                            let badge = null;
-                            if (isDelegateItem) badge = <span className="ml-2 text-[10px] uppercase tracking-wider bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">Delegato</span>;
-                            else if (isExtraEuItem) badge = <span className="ml-2 text-[10px] uppercase tracking-wider bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full font-bold">Extra-UE</span>;
-                            else if (isMinorItem) badge = <span className="ml-2 text-[10px] uppercase tracking-wider bg-pink-100 text-pink-800 px-2 py-0.5 rounded-full font-bold">Minore</span>;
-
-                            return (
-                                <React.Fragment key={item.id}>
-                                    {isFirstDelegateItem && (
-                                        <div className="mt-8 mb-3 flex items-center px-1 animate-in fade-in slide-in-from-top-2">
-                                            <div className="h-px bg-gray-200 flex-grow mr-4"></div>
-                                            <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center">
-                                                <UserCog className="w-3 h-3 mr-1" />
-                                                Sezione Delegati
-                                            </span>
-                                            <div className="h-px bg-gray-200 flex-grow ml-4"></div>
-                                        </div>
-                                    )}
-
-                                    <div 
-                                        className={`
-                                            flex items-center justify-between p-4 rounded-xl transition-all duration-200 border-2 group
-                                            ${isDelegateItem ? 'bg-amber-50/30 border-amber-100' : ''}
-                                            ${isChecked 
-                                                ? 'bg-gray-50 border-gray-100 opacity-75' 
-                                                : (!isDelegateItem ? 'bg-white border-gray-100 hover:border-blue-300 hover:shadow-md cursor-pointer' : 'hover:border-amber-300 hover:shadow-md cursor-pointer')
-                                            }
-                                        `}
-                                        onClick={() => toggleItem(item.id)}
-                                    >
-                                        <div className="flex items-center flex-grow">
-                                            {/* Checkbox area */}
-                                            <div className={`
-                                                mr-4 flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 border-2
-                                                ${isChecked 
-                                                    ? 'bg-accent-green border-accent-green text-white scale-100 rotate-0' 
-                                                    : `bg-white border-gray-300 text-transparent scale-95 group-hover:scale-110 group-hover:border-blue-400`
-                                                }
-                                            `}>
-                                                <Check className="w-4 h-4 stroke-[3]" />
-                                            </div>
-                                            
-                                            {/* Label */}
-                                            <div className="flex-grow">
-                                                <h4 className={`font-medium text-base sm:text-lg transition-colors flex flex-wrap items-center ${isChecked ? 'text-gray-400 line-through decoration-gray-300' : 'text-gray-800'}`}>
-                                                    {item.label}
-                                                    {!isChecked && badge}
-                                                </h4>
-                                            </div>
-                                        </div>
-
-                                        {/* Info Button - Opens Modal */}
-                                        <button 
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                setSelectedItem(item);
-                                            }}
-                                            className={`
-                                                p-2 rounded-full transition-colors ml-2 flex-shrink-0 
-                                                ${isChecked ? 'text-gray-300 hover:text-gray-500' : 'text-blue-400 hover:text-blue-600 hover:bg-blue-50'}
-                                            `}
-                                            aria-label="Vedi dettagli"
-                                        >
-                                            <Info className="w-5 h-5" />
-                                        </button>
-                                    </div>
-                                </React.Fragment>
-                            );
-                        })
+                        currentList.map((item) => (
+                            <ChecklistItemRow
+                                key={item.id}
+                                item={item}
+                                isChecked={!!checkedItems[item.id]}
+                                onToggle={toggleItem}
+                                onInfoClick={setSelectedItem}
+                                isDelegateMode={isDelegateMode}
+                            />
+                        ))
                     )}
                 </div>
             </div>
@@ -304,6 +157,7 @@ export const DocumentsChecklist: React.FC = () => {
                      <img 
                         src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&q=80&w=600" 
                         alt="Pianificazione documenti" 
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
@@ -335,92 +189,19 @@ export const DocumentsChecklist: React.FC = () => {
             </div>
         </div>
 
-        {/* Reset Confirmation Modal */}
-        {showResetConfirm && (
-            <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setShowResetConfirm(false)}>
-                <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden animate-in zoom-in-95 duration-200 p-6 text-center" onClick={e => e.stopPropagation()}>
-                    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <AlertTriangle className="w-8 h-8 text-red-600" />
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Resettare la Checklist?</h3>
-                    <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-                        Stai per cancellare tutti i documenti segnati. Questa azione non può essere annullata.
-                    </p>
+        {/* Modals */}
+        <ResetConfirmModal 
+            isOpen={showResetConfirm} 
+            onClose={() => setShowResetConfirm(false)} 
+            onConfirm={confirmReset} 
+        />
 
-                    <div className="flex gap-3">
-                        <button 
-                            onClick={() => setShowResetConfirm(false)}
-                            className="flex-1 py-2.5 px-4 rounded-xl border border-gray-200 font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-800 transition-colors"
-                        >
-                            Annulla
-                        </button>
-                        <button 
-                            onClick={confirmReset}
-                            className="flex-1 py-2.5 px-4 rounded-xl bg-red-600 font-semibold text-white hover:bg-red-700 shadow-md hover:shadow-lg transition-all"
-                        >
-                            Reset
-                        </button>
-                    </div>
-                </div>
-            </div>
-        )}
-
-        {/* Detail Modal */}
-        {selectedItem && (
-            <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setSelectedItem(null)}>
-                <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in zoom-in-95 duration-200 ring-1 ring-white/20" onClick={e => e.stopPropagation()}>
-                    <div className={`p-5 text-white flex justify-between items-start ${selectedItem.id.startsWith('del_') ? 'bg-amber-500' : 'bg-motorizzazione'}`}>
-                        <div>
-                            <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase mb-2 ${selectedItem.required ? 'bg-white/20 text-white' : 'bg-green-500/20 text-white'}`}>
-                                {selectedItem.required ? 'Obbligatorio' : 'Opzionale'}
-                            </span>
-                            <h3 className="font-bold text-xl pr-4 leading-tight">{selectedItem.label}</h3>
-                        </div>
-                        <button 
-                            onClick={() => setSelectedItem(null)}
-                            className="p-1 hover:bg-white/20 rounded-full transition-colors mt-1"
-                        >
-                            <X className="w-6 h-6" />
-                        </button>
-                    </div>
-                    
-                    <div className="p-6">
-                        <div className="mb-8">
-                            <p className="text-gray-700 text-lg leading-relaxed">
-                                {selectedItem.detail}
-                            </p>
-                        </div>
-
-                        <button 
-                            onClick={() => {
-                                toggleItem(selectedItem.id);
-                                setSelectedItem(null);
-                            }}
-                            className={`
-                                w-full py-3.5 px-4 rounded-xl font-bold flex items-center justify-center transition-all duration-300 transform active:scale-95
-                                ${checkedItems[selectedItem.id]
-                                    ? 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                                    : 'bg-accent-green text-white hover:bg-emerald-600 shadow-lg hover:shadow-xl hover:-translate-y-0.5'
-                                }
-                            `}
-                        >
-                            {checkedItems[selectedItem.id] ? (
-                                <>
-                                    <X className="w-5 h-5 mr-2" />
-                                    Rimuovi dalla lista
-                                </>
-                            ) : (
-                                <>
-                                    <Check className="w-5 h-5 mr-2" />
-                                    Ho questo documento
-                                </>
-                            )}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        )}
+        <ChecklistDetailModal 
+            item={selectedItem} 
+            isChecked={selectedItem ? !!checkedItems[selectedItem.id] : false}
+            onClose={() => setSelectedItem(null)} 
+            onToggle={toggleItem} 
+        />
     </section>
   );
 };
