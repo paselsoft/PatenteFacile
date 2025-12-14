@@ -20,7 +20,8 @@ export const Header: React.FC = () => {
                 Patente <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">Facile</span>
             </h1>
             
-            <p className="text-lg sm:text-2xl font-light text-blue-100 max-w-2xl mx-auto leading-relaxed mb-10">
+            {/* A11Y Fix: Increased contrast from text-blue-100 to text-blue-50 */}
+            <p className="text-lg sm:text-2xl font-light text-blue-50 max-w-2xl mx-auto leading-relaxed mb-10">
                 La guida completa e semplificata per il conseguimento della patente B. 
                 <span className="block mt-2 font-medium text-white opacity-90">Niente burocrazia complicata, solo i passi giusti.</span>
             </p>

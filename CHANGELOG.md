@@ -5,6 +5,7 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 ## [Unreleased]
 
 ### Aggiunto
+- **Performance:** Implementato "Lazy Loading" (`loading="lazy"`) su tutte le immagini non critiche (Presentazione, Documenti, Procedura, Costi) per migliorare il caricamento iniziale della pagina (LCP) e ridurre il consumo di banda.
 - **Refactoring Architetturale:** Suddivisione del componente `DocumentsChecklist` in sottocomponenti modulari (`ChecklistToggle`, `ChecklistItem`, `ResetConfirmModal`, `ChecklistDetailModal`).
 - **Hook useChecklist:** Creazione di un custom hook dedicato (`useChecklist.ts`) per centralizzare la logica di business, la persistenza e il calcolo del progresso della checklist.
 - **Robustezza Applicazione:** Introdotto componente `ErrorBoundary` per catturare errori imprevisti e prevenire crash dell'interfaccia.
@@ -14,6 +15,9 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 - **Accessibilità Modali:** Aggiunti attributi ARIA (`role="dialog"`, `aria-modal`) e listener per il tasto `Escape` su tutti i modali (JotForm e Checklist).
 
 ### Modificato
+- **Type Safety LocalStorage:** Migliorata la gestione degli errori nel custom hook `useLocalStorage` per gestire correttamente i tipi di errore `unknown` nei blocchi try/catch.
+- **Contrasto Header:** Aumentato il contrasto del testo secondario nell'hero section (da `text-blue-100` a `text-blue-50`) per migliorare la leggibilità sullo sfondo gradiente.
+- **Pulizia Codice:** Rimossi alias e import ridondanti nel componente `ChecklistItem`.
 - **Refactoring Checklist:** Riscritto `DocumentsChecklist` per utilizzare il nuovo hook di storage e `useMemo` per ottimizzare le performance di rendering.
 - **Accessibilità Logo:** Il logo nella Navbar è stato convertito da `div` a `button` per essere accessibile tramite tastiera.
 - **Responsive Menu:** Corretto bug dell'altezza massima del menu mobile che poteva tagliare le voci su schermi piccoli.

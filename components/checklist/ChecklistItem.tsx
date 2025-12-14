@@ -1,13 +1,13 @@
 import React from 'react';
 import { Check, Info, UserCog } from 'lucide-react';
-import { ChecklistItem as IChecklistItem, ChecklistItem } from '../../types';
+import { ChecklistItem } from '../../types';
 import { DELEGATE_DOCUMENTS_DATA } from '../../constants';
 
 interface ChecklistItemProps {
-  item: IChecklistItem;
+  item: ChecklistItem;
   isChecked: boolean;
   onToggle: (id: string) => void;
-  onInfoClick: (item: IChecklistItem) => void;
+  onInfoClick: (item: ChecklistItem) => void;
   isDelegateMode: boolean;
 }
 
