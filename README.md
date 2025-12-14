@@ -42,7 +42,8 @@ L'applicazione offre una panoramica chiara dei costi, dei passaggi necessari e f
 *   `src/index.tsx`: Entry point.
 *   `src/App.tsx`: Layout principale con Error Boundary.
 *   `src/components/`: Componenti modulari.
-*   `src/hooks/`: Custom Hooks (useLocalStorage, useScrollTo).
+    *   `src/components/checklist/`: Sottocomponenti ottimizzati per la checklist.
+*   `src/hooks/`: Custom Hooks (useChecklist, useLocalStorage, useScrollTo).
 *   `src/constants.tsx`: Dati statici (testi, costi, documenti).
 *   `src/types.ts`: Definizioni TypeScript.
 
