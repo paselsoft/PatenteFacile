@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertTriangle, UserCheck, Users, Building2, Download } from 'lucide-react';
+import { AlertTriangle, UserCheck, Users, Building2, Download, FileText } from 'lucide-react';
 
 export const PresentationSection: React.FC = () => {
   return (
@@ -27,17 +27,31 @@ export const PresentationSection: React.FC = () => {
                 </div>
 
                 <div className="p-6">
-                    <p className="text-gray-600 mb-6">
-                        La domanda (<a 
+                    {/* Highlighted Download Box */}
+                    <div className="mb-6 p-4 bg-blue-50/50 border border-blue-100 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4 transition-all hover:bg-blue-50 hover:border-blue-200 shadow-sm">
+                        <div className="flex items-center gap-3 w-full sm:w-auto">
+                             <div className="p-2.5 bg-white text-motorizzazione rounded-lg shadow-sm border border-blue-50 flex-shrink-0">
+                                 <FileText className="w-6 h-6" />
+                             </div>
+                             <div>
+                                 <h4 className="text-gray-900 font-bold leading-tight">Modello TT 2112</h4>
+                                 <p className="text-xs text-gray-500 mt-1">Scarica il modulo obbligatorio.</p>
+                             </div>
+                        </div>
+                        
+                        <a 
                             href="https://www.ilportaledellautomobilista.it/documents/56611/128846273/TT2112.pdf/826c655d-eba2-465a-8ab8-c618bddf1d4e" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="text-motorizzazione font-semibold hover:underline inline-flex items-center gap-1 transition-colors"
-                            title="Scarica il PDF del Modello TT 2112"
+                            className="w-full sm:w-auto bg-motorizzazione hover:bg-blue-700 text-white text-sm font-bold py-2.5 px-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center group whitespace-nowrap"
                         >
-                            Modello TT 2112
-                            <Download className="w-4 h-4" />
-                        </a>) può essere presentata allo sportello in tre modi:
+                            <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                            Scarica PDF
+                        </a>
+                    </div>
+
+                    <p className="text-gray-600 mb-6">
+                        Una volta compilato, il modulo può essere presentato allo sportello in tre modi:
                     </p>
                     
                     <ul className="space-y-4">
