@@ -5,6 +5,10 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 ## [Unreleased]
 
 ### Aggiunto
+- **Offline Ready (Service Worker):** Implementato un Service Worker (`service-worker.js`) che abilita il funzionamento offline dell'applicazione.
+    - Strategia **Network-First** per la shell HTML (assicura che l'app si aggiorni quando c'è rete).
+    - Strategia **Cache-First** per asset pesanti (immagini Unsplash, font, librerie CDN) per prestazioni fulminee.
+    - Registrazione automatica all'avvio in `index.tsx`.
 - **Design System Standard:** Centralizzata la configurazione delle animazioni in `tailwind.config` (dentro `index.html`).
     - Default Transition: **300ms** (Interfaccia, Bottoni, Hover)
     - Slow Transition: **500ms** (Barre di progresso, Pannelli grandi)
@@ -25,6 +29,7 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 - **Accessibilità Modali:** Aggiunti attributi ARIA (`role="dialog"`, `aria-modal`) e listener per il tasto `Escape` su tutti i modali (JotForm e Checklist).
 
 ### Modificato
+- **Entry Point:** Aggiornato `index.tsx` per registrare il Service Worker al caricamento della pagina.
 - **Standardizzazione Componenti:** Aggiornati `Navbar`, `DocumentsChecklist` e sottocomponenti (`ChecklistItem`, `ChecklistToggle`, `ResetConfirmModal`) per utilizzare le nuove durate standard (300ms/500ms/700ms) eliminando le transizioni incoerenti.
 - **Index HTML:** Ristrutturato l'`head` del documento per includere i riferimenti al manifest, icone Apple Touch, theme-color e metadati social.
 - **Type Safety LocalStorage:** Migliorata la gestione degli errori nel custom hook `useLocalStorage` per gestire correttamente i tipi di errore `unknown` nei blocchi try/catch.
