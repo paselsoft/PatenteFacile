@@ -87,7 +87,7 @@ export const PresentationSection: React.FC = () => {
                         
                         <li className="p-4 bg-gray-50 rounded-xl border-l-4 border-accent-green shadow-sm hover:shadow-md transition-shadow">
                             <strong className="block font-bold text-lg text-gray-900 mb-1">3. Autoscuola</strong>
-                            <span className="text-gray-600">Tramite un'agenzia o autoscuola abilitata.</span>
+                            <span className="text-gray-600">Tramite un'autoscuola abilitata.</span>
                         </li>
                     </ul>
                 </div>

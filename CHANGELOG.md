@@ -42,3 +42,4 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 
 ### Corretto
 - Risolto problema UX dove gli utenti non potevano raggiungere il 100% di completamento senza spuntare documenti non necessari (es. Permesso di Soggiorno per cittadini UE).
+- **Correzione Testuale Presentazione:** Rimossa la menzione errata alle "agenzie di pratiche auto" per la presentazione della domanda. Per il conseguimento della patente, sono abilitate solo le autoscuole.
