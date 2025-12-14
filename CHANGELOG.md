@@ -5,6 +5,8 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 ## [Unreleased]
 
 ### Aggiunto
+- **TypeScript Strict Mode:** Attivata la modalità rigorosa (`"strict": true`) nel `tsconfig.json`. Questo include controlli avanzati come `strictNullChecks` e `noImplicitAny` per prevenire bug a runtime e garantire la massima qualità del codice come richiesto dal report di analisi.
+- **Unit Testing:** Creata suite di test completa per `useChecklist.ts` utilizzando Vitest e React Testing Library. Copertura test per logica filtri, persistenza localStorage, calcolo progresso e reset.
 - **PWA (Progressive Web App):** Aggiunto file `manifest.json` e configurazioni meta per rendere l'applicazione installabile su dispositivi desktop e mobile ("Aggiungi a schermata Home").
 - **SEO Optimization:** Implementati meta tag completi (`description`, `keywords`, `author`) nell'`index.html` per migliorare l'indicizzazione sui motori di ricerca.
 - **Social Sharing (Open Graph):** Aggiunti protocolli Open Graph (Facebook/LinkedIn) e Twitter Card per generare anteprime ricche (con immagini e descrizioni personalizzate) quando il link viene condiviso.
