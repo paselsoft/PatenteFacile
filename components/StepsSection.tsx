@@ -53,7 +53,8 @@ export const StepsSection: React.FC = () => {
 
           {/* Right Column: Sticky Image */}
           <div className="hidden lg:block sticky top-24">
-              <div className="rounded-3xl overflow-hidden shadow-2xl h-[600px] relative group">
+              {/* Fix: use responsive height classes instead of fixed arbitrary value */}
+              <div className="rounded-3xl overflow-hidden shadow-2xl h-96 lg:h-[600px] relative group">
                   <img 
                     src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=800" 
                     alt="Vista dal posto di guida" 
