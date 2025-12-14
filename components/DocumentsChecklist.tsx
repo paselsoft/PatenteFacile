@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DOCUMENTS_DATA, DELEGATE_DOCUMENTS_DATA, EXTRA_EU_DOCUMENTS_DATA, MINOR_DOCUMENTS_DATA } from '../constants';
 import { ChecklistItem } from '../types';
-import { Check, ClipboardList, RefreshCw, Info, X, UserCog, Globe, Baby, Settings, ChevronDown, ChevronUp, Camera, Trophy, Sparkles } from 'lucide-react';
+import { Check, ClipboardList, RefreshCw, Info, X, UserCog, Globe, Baby, Settings, Camera, Trophy, Sparkles } from 'lucide-react';
 
 export const DocumentsChecklist: React.FC = () => {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
@@ -10,7 +10,6 @@ export const DocumentsChecklist: React.FC = () => {
   const [isDelegateMode, setIsDelegateMode] = useState(false);
   const [isExtraEu, setIsExtraEu] = useState(false);
   const [isMinor, setIsMinor] = useState(false);
-  const [showSettings, setShowSettings] = useState(false); // Default closed for cleaner initial look
   
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ChecklistItem | null>(null);
@@ -155,47 +154,35 @@ export const DocumentsChecklist: React.FC = () => {
                     ></div>
                 </div>
 
-                {/* Configuration Toggle Bar */}
-                <div className="border-b border-gray-100 bg-gray-50/80">
-                    <button 
-                        onClick={() => setShowSettings(!showSettings)}
-                        className={`w-full px-6 py-4 flex items-center justify-between transition-colors text-sm font-bold tracking-wide
-                        ${showSettings ? 'text-motorizzazione bg-blue-50/50' : 'text-gray-500 hover:text-motorizzazione hover:bg-gray-50'}
-                        `}
-                    >
-                        <span className="flex items-center">
-                            <Settings className="w-4 h-4 mr-2" />
-                            FILTRA LA TUA LISTA
-                        </span>
-                        <div className="flex items-center text-xs font-normal text-gray-400">
-                             {(isExtraEu || isMinor || isDelegateMode) && (
-                                <span className="mr-3 bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Filtri attivi</span>
-                             )}
-                            {showSettings ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                        </div>
-                    </button>
+                {/* Configuration Toggle Bar - Always Visible */}
+                <div className="border-b border-gray-100 bg-gray-50/50 p-6">
+                    <div className="flex items-center justify-between mb-4">
+                        <h3 className="flex items-center text-sm font-bold tracking-wide text-gray-700">
+                            <Settings className="w-4 h-4 mr-2 text-motorizzazione" />
+                            PERSONALIZZA LA TUA LISTA
+                        </h3>
+                        <span className="text-xs text-gray-400 font-normal hidden sm:block">Seleziona le opzioni che ti riguardano</span>
+                    </div>
                     
-                    <div className={`overflow-hidden transition-all duration-300 ease-in-out ${showSettings ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                        <div className="px-6 pb-6 pt-2 grid grid-cols-1 md:grid-cols-3 gap-4 bg-gray-50/80">
-                            <ToggleSwitch 
-                                label="Cittadino Extra-UE" 
-                                checked={isExtraEu} 
-                                onChange={setIsExtraEu}
-                                icon={Globe}
-                            />
-                            <ToggleSwitch 
-                                label="Minorenne" 
-                                checked={isMinor} 
-                                onChange={setIsMinor}
-                                icon={Baby}
-                            />
-                            <ToggleSwitch 
-                                label="Delega a Terzi" 
-                                checked={isDelegateMode} 
-                                onChange={setIsDelegateMode}
-                                icon={UserCog}
-                            />
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <ToggleSwitch 
+                            label="Cittadino Extra-UE" 
+                            checked={isExtraEu} 
+                            onChange={setIsExtraEu}
+                            icon={Globe}
+                        />
+                        <ToggleSwitch 
+                            label="Minorenne" 
+                            checked={isMinor} 
+                            onChange={setIsMinor}
+                            icon={Baby}
+                        />
+                        <ToggleSwitch 
+                            label="Delega a Terzi" 
+                            checked={isDelegateMode} 
+                            onChange={setIsDelegateMode}
+                            icon={UserCog}
+                        />
                     </div>
                 </div>
 

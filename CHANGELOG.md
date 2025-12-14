@@ -5,6 +5,8 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 ## [Unreleased]
 
 ### Aggiunto
+- **Checklist Filtri:** Reso il pannello filtri della checklist sempre visibile e rimosso il meccanismo "accordion" per migliorare l'usabilità immediata.
+- **Layout TT 2112:** Ottimizzato il box di download per forzare l'avviso di stampa su una singola riga e allineare il pulsante in alto.
 - **Avviso Stampa TT 2112:** Inserito un badge informativo evidenziato nel box di download del Modello TT 2112 che raccomanda la stampa su fogli singoli (no fronte-retro).
 - **CTA Modello TT 2112:** Trasformato il link per il download del modello TT 2112 in un box "Call-to-Action" evidente e accattivante per migliorare la UX.
 - **CTA in Header:** Aggiunto pulsante "Prepara i Documenti" nell'hero section per migliorare la conversione e guidare l'utente. Migliorato sfondo con gradienti.
@@ -27,6 +29,7 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 - **Sezione Delegati Migliorata:** Aggiunto un header visivo, icone dedicate e indentazione ("sottovoci") per i documenti relativi alla delega.
 
 ### Modificato
+- **Layout Box TT 2112:** Corretto l'allineamento del pulsante di download per centrarlo verticalmente ("dentro il box") invece di allinearlo in alto.
 - **UI Settings Checklist:** Ridisegnato il pannello filtri della checklist per renderlo più chiaro e integrato.
 - Refactoring completo `DocumentsChecklist` per gestire layout responsive (Grid) e logica complessa.
 - Riorganizzazione della sezione Documenti per spostare l'info box delle foto nella sidebar su desktop.
