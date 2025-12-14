@@ -4,6 +4,12 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 
 ## [Unreleased]
 
+### Fix Critici (Post-Review)
+- **Entry Point:** Aggiunto il tag script mancante in `index.html` per caricare l'applicazione React (`index.tsx`). Senza questo, l'app mostrava una pagina bianca.
+- **Animazioni:** Risolto problema con classi di animazione "phantom" (`animate-in`, `fade-in`, etc.) che dipendevano da un plugin non presente.
+    - Definiti keyframes standard (`fade-in`, `zoom-in`, `slide-in`) direttamente nella configurazione Tailwind in `index.html`.
+    - Aggiornati tutti i componenti modali e la checklist per utilizzare le nuove classi standard (`animate-fade-in`, `animate-zoom-in`).
+
 ### Aggiunto
 - **Design System Animation:** Aggiunta animazione custom `fade-in-down` in `tailwind.config` per rendere funzionante l'entrata dell'icona nell'Header.
 - **Offline Ready (Service Worker):** Implementato un Service Worker (`service-worker.js`) che abilita il funzionamento offline dell'applicazione.

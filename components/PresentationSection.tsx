@@ -189,7 +189,7 @@ export const PresentationSection: React.FC = () => {
         {/* JOTFORM MODAL */}
         {showFormModal && (
             <div 
-                className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-300"
+                className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-black/70 backdrop-blur-sm animate-fade-in"
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="modal-title"
@@ -197,7 +197,7 @@ export const PresentationSection: React.FC = () => {
             >
                 <div 
                     ref={modalRef}
-                    className="bg-white sm:rounded-2xl shadow-2xl w-full max-w-4xl h-full sm:h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-300 focus:outline-none" 
+                    className="bg-white sm:rounded-2xl shadow-2xl w-full max-w-4xl h-full sm:h-[90vh] flex flex-col overflow-hidden animate-zoom-in focus:outline-none" 
                     onClick={e => e.stopPropagation()}
                     tabIndex={-1}
                 >

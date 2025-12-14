@@ -32,7 +32,7 @@ export const ChecklistItemRow: React.FC<ChecklistItemProps> = ({
   return (
     <React.Fragment>
         {isFirstDelegateItem && (
-            <div className="mt-8 mb-3 flex items-center px-1 animate-in fade-in slide-in-from-top-2 duration-300">
+            <div className="mt-8 mb-3 flex items-center px-1 animate-slide-in">
                 <div className="h-px bg-gray-200 flex-grow mr-4"></div>
                 <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center">
                     <UserCog className="w-3 h-3 mr-1" />

@@ -35,7 +35,7 @@ export const ChecklistDetailModal: React.FC<ChecklistDetailModalProps> = ({ item
 
   return (
     <div 
-        className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300" 
+        className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in" 
         onClick={onClose}
         role="dialog"
         aria-modal="true"
@@ -43,7 +43,7 @@ export const ChecklistDetailModal: React.FC<ChecklistDetailModalProps> = ({ item
     >
         <div 
             ref={modalRef}
-            className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in zoom-in-95 duration-300 ring-1 ring-white/20 focus:outline-none" 
+            className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-zoom-in ring-1 ring-white/20 focus:outline-none" 
             onClick={e => e.stopPropagation()}
             tabIndex={-1}
         >

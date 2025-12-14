@@ -33,7 +33,7 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({ isOpen, on
 
   return (
     <div 
-        className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300" 
+        className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in" 
         onClick={onClose}
         role="dialog"
         aria-modal="true"
@@ -42,7 +42,7 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({ isOpen, on
     >
         <div 
             ref={modalRef}
-            className="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden animate-in zoom-in-95 duration-300 p-6 text-center focus:outline-none" 
+            className="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden animate-zoom-in p-6 text-center focus:outline-none" 
             onClick={e => e.stopPropagation()}
             tabIndex={-1}
         >

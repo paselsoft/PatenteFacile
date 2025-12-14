@@ -113,7 +113,7 @@ export const DocumentsChecklist: React.FC = () => {
 
                 {/* Success Banner */}
                 {isComplete && (
-                    <div className="mx-4 mt-4 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center animate-in zoom-in-95 duration-300" role="alert">
+                    <div className="mx-4 mt-4 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center animate-zoom-in" role="alert">
                         <div className="p-2 bg-green-100 rounded-full mr-4 text-green-600">
                             <Trophy className="w-6 h-6" />
                         </div>
