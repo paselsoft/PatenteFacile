@@ -29,6 +29,7 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 - **Sezione Delegati Migliorata:** Aggiunto un header visivo, icone dedicate e indentazione ("sottovoci") per i documenti relativi alla delega.
 
 ### Modificato
+- **Layout Responsivo Box TT 2112:** Implementata una logica adattiva avanzata (Stack->Row->Stack->Row) per gestire correttamente lo spazio su schermi laptop/tablet quando la griglia si divide, prevenendo l'overflow del pulsante di download.
 - **Layout Box TT 2112:** Corretto l'allineamento del pulsante di download per centrarlo verticalmente ("dentro il box") invece di allinearlo in alto.
 - **UI Settings Checklist:** Ridisegnato il pannello filtri della checklist per renderlo più chiaro e integrato.
 - Refactoring completo `DocumentsChecklist` per gestire layout responsive (Grid) e logica complessa.

@@ -28,8 +28,9 @@ export const PresentationSection: React.FC = () => {
 
                 <div className="p-6">
                     {/* Highlighted Download Box */}
-                    <div className="mb-6 p-4 bg-blue-50/50 border border-blue-100 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all hover:bg-blue-50 hover:border-blue-200 shadow-sm">
-                        <div className="flex items-start gap-3 w-full sm:w-auto">
+                    {/* Responsive logic: Stack on Mobile -> Row on Tablet -> Stack on Laptop (Grid Split) -> Row on Desktop */}
+                    <div className="mb-6 p-4 bg-blue-50/50 border border-blue-100 rounded-xl flex flex-col sm:flex-row sm:items-center lg:flex-col lg:items-stretch xl:flex-row xl:items-center justify-between gap-4 transition-all hover:bg-blue-50 hover:border-blue-200 shadow-sm">
+                        <div className="flex items-start gap-3 w-full sm:w-auto lg:w-full xl:w-auto">
                              <div className="p-2.5 bg-white text-motorizzazione rounded-lg shadow-sm border border-blue-50 flex-shrink-0">
                                  <FileText className="w-6 h-6" />
                              </div>
@@ -49,7 +50,7 @@ export const PresentationSection: React.FC = () => {
                             href="https://www.ilportaledellautomobilista.it/documents/56611/128846273/TT2112.pdf/826c655d-eba2-465a-8ab8-c618bddf1d4e" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="w-full sm:w-auto bg-motorizzazione hover:bg-blue-700 text-white text-sm font-bold py-2.5 px-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center group whitespace-nowrap"
+                            className="w-full sm:w-auto lg:w-full xl:w-auto bg-motorizzazione hover:bg-blue-700 text-white text-sm font-bold py-2.5 px-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center group whitespace-nowrap"
                         >
                             <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
                             Scarica PDF
