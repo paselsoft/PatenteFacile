@@ -46,7 +46,7 @@ export const Navbar: React.FC = () => {
                 key={link.name}
                 href={`#${link.href}`}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-gray-600 hover:text-motorizzazione px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-motorizzazione"
+                className="text-gray-600 hover:text-motorizzazione px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-motorizzazione"
               >
                 {link.name}
               </a>
@@ -84,7 +84,7 @@ export const Navbar: React.FC = () => {
               key={link.name}
               href={`#${link.href}`}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-gray-600 hover:text-motorizzazione hover:bg-blue-50 block px-3 py-3 rounded-md text-base font-medium focus:outline-none focus:bg-blue-50"
+              className="text-gray-600 hover:text-motorizzazione hover:bg-blue-50 block px-3 py-3 rounded-md text-base font-medium focus:outline-none focus:bg-blue-50 transition-colors duration-300"
             >
               {link.name}
             </a>

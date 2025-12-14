@@ -32,7 +32,7 @@ export const ChecklistItemRow: React.FC<ChecklistItemProps> = ({
   return (
     <React.Fragment>
         {isFirstDelegateItem && (
-            <div className="mt-8 mb-3 flex items-center px-1 animate-in fade-in slide-in-from-top-2">
+            <div className="mt-8 mb-3 flex items-center px-1 animate-slide-in">
                 <div className="h-px bg-gray-200 flex-grow mr-4"></div>
                 <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center">
                     <UserCog className="w-3 h-3 mr-1" />
@@ -45,7 +45,7 @@ export const ChecklistItemRow: React.FC<ChecklistItemProps> = ({
         <label 
             htmlFor={`check-${item.id}`}
             className={`
-                flex items-center justify-between p-4 rounded-xl transition-all duration-200 border-2 group relative cursor-pointer
+                flex items-center justify-between p-4 rounded-xl transition-all duration-300 border-2 group relative cursor-pointer
                 ${isDelegateItem ? 'bg-amber-50/30 border-amber-100' : ''}
                 ${isChecked 
                     ? 'bg-gray-50 border-gray-100 opacity-75' 
@@ -75,7 +75,7 @@ export const ChecklistItemRow: React.FC<ChecklistItemProps> = ({
                 
                 {/* Label Text */}
                 <div className="flex-grow">
-                    <h4 className={`font-medium text-base sm:text-lg transition-colors flex flex-wrap items-center ${isChecked ? 'text-gray-400 line-through decoration-gray-300' : 'text-gray-800'}`}>
+                    <h4 className={`font-medium text-base sm:text-lg transition-colors duration-300 flex flex-wrap items-center ${isChecked ? 'text-gray-400 line-through decoration-gray-300' : 'text-gray-800'}`}>
                         {item.label}
                         {!isChecked && badge}
                     </h4>
@@ -91,7 +91,7 @@ export const ChecklistItemRow: React.FC<ChecklistItemProps> = ({
                     onInfoClick(item);
                 }}
                 className={`
-                    p-2 rounded-full transition-colors ml-2 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-400
+                    p-2 rounded-full transition-colors duration-300 ml-2 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-400
                     ${isChecked ? 'text-gray-300 hover:text-gray-500' : 'text-blue-400 hover:text-blue-600 hover:bg-blue-50'}
                 `}
                 aria-label={`Vedi dettagli per ${item.label}`}

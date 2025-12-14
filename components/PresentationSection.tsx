@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { AlertTriangle, UserCheck, Users, Building2, Download, FileText, Printer, PenLine, X, ExternalLink } from 'lucide-react';
+import { AlertTriangle, UserCheck, Users, Building2, Download, FileText, Printer, PenLine, X, ExternalLink, CreditCard } from 'lucide-react';
 
 export const PresentationSection: React.FC = () => {
   const [showFormModal, setShowFormModal] = useState(false);
@@ -42,7 +42,7 @@ export const PresentationSection: React.FC = () => {
                         src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800" 
                         alt="Ufficio e documenti" 
                         loading="lazy"
-                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-cinematic"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
                         <h3 className="text-white text-xl font-bold p-6 flex items-center shadow-sm">
@@ -137,8 +137,8 @@ export const PresentationSection: React.FC = () => {
             </div>
 
             {/* PagoPA Information */}
-            <div className="flex flex-col h-full space-y-8">
-                <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 flex-grow relative overflow-hidden">
+            <div className="flex flex-col space-y-8">
+                <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 flex-grow-0 relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-4 opacity-5">
                          <Building2 className="w-32 h-32" />
                     </div>
@@ -169,27 +169,39 @@ export const PresentationSection: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Decorative Image Block for Payments */}
-                 <div className="rounded-2xl overflow-hidden shadow-lg h-64 relative group">
+                {/* Functional Link Block for Payments */}
+                 <a 
+                    href="https://www.ilportaledellautomobilista.it/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-2xl overflow-hidden shadow-lg h-64 relative group block bg-gradient-to-br from-blue-600 to-blue-800"
+                    aria-label="Accedi al Portale dell'Automobilista per pagare"
+                 >
                     <img 
                         src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=800" 
-                        alt="Pagamenti elettronici" 
+                        alt="" 
                         loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-cinematic mix-blend-overlay"
                     />
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                        <span className="text-white font-bold text-lg border-2 border-white px-4 py-2 rounded uppercase tracking-widest">
-                            Pagamenti Digitali
-                        </span>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
+                        <div className="bg-white/20 p-4 rounded-full mb-4 backdrop-blur-sm group-hover:scale-110 transition-transform duration-300 border border-white/20">
+                            <CreditCard className="w-8 h-8 text-white" />
+                        </div>
+                        <h4 className="text-white font-bold text-2xl mb-2 tracking-tight">
+                            Accedi al Portale
+                        </h4>
+                        <p className="text-blue-100 text-sm font-medium bg-black/20 px-3 py-1 rounded-full backdrop-blur-sm border border-white/10 group-hover:bg-white/20 transition-colors">
+                            Paga bollettini online <ExternalLink className="w-3 h-3 inline ml-1" />
+                        </p>
                     </div>
-                 </div>
+                 </a>
             </div>
         </div>
 
         {/* JOTFORM MODAL */}
         {showFormModal && (
             <div 
-                className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-300"
+                className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-black/70 backdrop-blur-sm animate-fade-in"
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="modal-title"
@@ -197,7 +209,7 @@ export const PresentationSection: React.FC = () => {
             >
                 <div 
                     ref={modalRef}
-                    className="bg-white sm:rounded-2xl shadow-2xl w-full max-w-4xl h-full sm:h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-300 focus:outline-none" 
+                    className="bg-white sm:rounded-2xl shadow-2xl w-full max-w-4xl h-full sm:h-[90vh] flex flex-col overflow-hidden animate-zoom-in focus:outline-none" 
                     onClick={e => e.stopPropagation()}
                     tabIndex={-1}
                 >
