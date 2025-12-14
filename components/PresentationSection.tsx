@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertTriangle, UserCheck, Users, Building2, Download, FileText } from 'lucide-react';
+import { AlertTriangle, UserCheck, Users, Building2, Download, FileText, Printer } from 'lucide-react';
 
 export const PresentationSection: React.FC = () => {
   return (
@@ -30,12 +30,18 @@ export const PresentationSection: React.FC = () => {
                     {/* Highlighted Download Box */}
                     <div className="mb-6 p-4 bg-blue-50/50 border border-blue-100 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4 transition-all hover:bg-blue-50 hover:border-blue-200 shadow-sm">
                         <div className="flex items-center gap-3 w-full sm:w-auto">
-                             <div className="p-2.5 bg-white text-motorizzazione rounded-lg shadow-sm border border-blue-50 flex-shrink-0">
+                             <div className="p-2.5 bg-white text-motorizzazione rounded-lg shadow-sm border border-blue-50 flex-shrink-0 self-start sm:self-center">
                                  <FileText className="w-6 h-6" />
                              </div>
                              <div>
                                  <h4 className="text-gray-900 font-bold leading-tight">Modello TT 2112</h4>
-                                 <p className="text-xs text-gray-500 mt-1">Scarica il modulo obbligatorio.</p>
+                                 <p className="text-xs text-gray-500 mt-1 mb-2">Scarica il modulo obbligatorio.</p>
+                                 
+                                 {/* Printing Warning */}
+                                 <div className="inline-flex items-center px-2 py-1 bg-amber-100 border border-amber-200 rounded-md text-[10px] sm:text-xs font-bold text-amber-800 leading-tight">
+                                    <Printer className="w-3 h-3 mr-1.5 flex-shrink-0" />
+                                    Stampa fogli singoli (NO Fronte-Retro)
+                                 </div>
                              </div>
                         </div>
                         
