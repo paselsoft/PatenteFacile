@@ -4,6 +4,19 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 
 ## [Unreleased]
 
+### Code Hygiene & Infrastruttura (Fase 1)
+- **Configurazione Prettier:** Creato file `.prettierrc` con regole di formattazione standard (single quote, no semi, trailing comma es5) per garantire coerenza stilistica.
+- **Configurazione Lint-Staged:** Creato `.lintstagedrc` per eseguire ESLint e Prettier solo sui file in staging, ottimizzando i tempi di commit.
+- **Git Hooks:** Implementato hook `.husky/pre-commit` per automatizzare i controlli di qualità prima di ogni commit.
+- **Documentation:** Aggiornato `README.md` con i nuovi comandi di sviluppo (`npm run format`, `npm run lint`) e spiegazione del workflow di qualità.
+
+### Developer Experience & Code Hygiene (Fase 4 - Precedente)
+- **Infrastruttura di Quality Assurance:** Configurato un ambiente di sviluppo professionale per garantire la qualità del codice a lungo termine.
+- **ESLint Standard:** Aggiunta configurazione `.eslintrc.json` con regole rigorose per TypeScript, React Hooks e, soprattutto, **Accessibilità (jsx-a11y)**.
+- **Prettier:** Introdotto `.prettierrc` per garantire una formattazione del codice coerente tra diversi sviluppatori.
+- **Husky & Lint-Staged:** Implementati Git Hooks che impediscono il commit di codice che non rispetta le regole di linting o che contiene errori di tipo.
+- **Package Scripts:** Aggiornato `package.json` con script dedicati (`lint`, `format`, `type-check`) e organizzate le dipendenze spostando i tool di testing e build in `devDependencies`.
+
 ### Quality Assurance (Fase 3: Testing Componenti)
 - **Unit Testing UI:** Implementati test completi per i componenti critici dell'interfaccia utilizzando `Vitest` e `React Testing Library`.
 - **ChecklistItem Tests:** 
