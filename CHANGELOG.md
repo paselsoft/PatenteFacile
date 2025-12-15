@@ -4,7 +4,12 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 
 ## [Unreleased]
 
-### Code Hygiene & Infrastruttura (Fase 1)
+### Fix & Code Hygiene (Fase 1 - Completamento)
+- **Configurazione Code Quality:** Creati e configurati `.prettierrc` e `.lintstagedrc` per standardizzare lo stile del codice e ottimizzare i commit.
+- **Husky Hook:** Aggiunto script `.husky/pre-commit` per automatizzare i controlli di qualità (ESLint + Prettier) prima di ogni commit.
+- **Fix Architetturale:** Rimossa la sezione `<script type="importmap">` da `index.html`. Questo risolve potenziali "Internal Errors" dovuti al caricamento duplicato di React (locale via Vite vs CDN) e garantisce che l'applicazione utilizzi solo le dipendenze gestite in `package.json`.
+
+### Code Hygiene & Infrastruttura (Fase 1 - Iniziale)
 - **Configurazione Prettier:** Creato file `.prettierrc` con regole di formattazione standard (single quote, no semi, trailing comma es5) per garantire coerenza stilistica.
 - **Configurazione Lint-Staged:** Creato `.lintstagedrc` per eseguire ESLint e Prettier solo sui file in staging, ottimizzando i tempi di commit.
 - **Git Hooks:** Implementato hook `.husky/pre-commit` per automatizzare i controlli di qualità prima di ogni commit.
