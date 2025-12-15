@@ -4,6 +4,16 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 
 ## [Unreleased]
 
+### Quality Assurance (Fase 3: Testing Componenti)
+- **Unit Testing UI:** Implementati test completi per i componenti critici dell'interfaccia utilizzando `Vitest` e `React Testing Library`.
+- **ChecklistItem Tests:** 
+    - Verifica del rendering condizionale dei badge (Extra-UE, Minore, Delegato).
+    - Verifica delle interazioni utente (Toggle click).
+    - Verifica della formattazione visiva (testo barrato al completamento).
+- **ChecklistToggle Tests:** Verifica del cambio di stato e della renderizzazione corretta delle icone.
+- **CostsSection Tests:** Verifica della corretta visualizzazione della tabella prezzi e del calcolo totale.
+- **Mocking Contesto:** Implementata strategia di mocking per `LanguageContext` per isolare i test UI dalla logica di traduzione e persistenza.
+
 ### Funzionalità (Fase 2: Internazionalizzazione)
 - **Supporto Multi-lingua (i18n):** Implementata l'intera infrastruttura per il supporto multilingua.
     - Creazione `LanguageContext` per la gestione dello stato globale della lingua.
