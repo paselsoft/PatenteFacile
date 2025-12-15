@@ -4,10 +4,26 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 
 ## [Unreleased]
 
+### Environment & Workflow
+- **Gestione Anteprima AI Studio:** Identificato il comportamento automatico dell'ambiente di preview che inietta script `importmap` in `index.html`.
+  - *Azione:* Rimozione manuale dello script prima del commit.
+  - *Nota Tecnica:* Questo comportamento non è disabilitabile lato configurazione progetto, ma deve essere gestito mantenendo pulito il codice sorgente per la build di produzione (Cloud Run/Vite).
+
+### Quality Assurance & Testing (Fase 4 - Consolidamento)
+- **Fix Critico Index:** Rimossa nuovamente e definitivamente la sezione `<script type="importmap">` da `index.html`. Analisi confermata: non esistono script interni al progetto che rigenerano questo blocco; la sua ricomparsa è probabilmente dovuta a configurazioni dell'ambiente di sviluppo esterno o plugin dell'editor.
+- **Ambiente di Test:** Aggiornato `vite.config.ts` per configurare correttamente l'ambiente `jsdom` per Vitest, abilitando il testing dei componenti React.
+- **Nuovi Test Unitari:**
+    - **LanguageContext:** Creata suite di test completa per verificare la logica di traduzione, il fallback delle chiavi e la persistenza della lingua.
+    - **Header Component:** Aggiunti test per verificare il rendering corretto dei testi e l'integrazione con lo scroll (mocked).
+    - **Navbar Component:** Aggiunti test per la navigazione, il cambio lingua e l'interazione con il logo.
+- **Copertura:** Aumentata significativamente la copertura dei test sui componenti "core" dell'interfaccia.
+
+### Environment & Config
+- **Ripristino Configurazioni:** Rigenerati i file `.prettierrc`, `.lintstagedrc` e `.husky/pre-commit` per garantire la stabilità dell'ambiente di sviluppo.
+
 ### Fix & Code Hygiene (Fase 1 - Completamento)
 - **Configurazione Code Quality:** Creati e configurati `.prettierrc` e `.lintstagedrc` per standardizzare lo stile del codice e ottimizzare i commit.
 - **Husky Hook:** Aggiunto script `.husky/pre-commit` per automatizzare i controlli di qualità (ESLint + Prettier) prima di ogni commit.
-- **Fix Architetturale:** Rimossa la sezione `<script type="importmap">` da `index.html`. Questo risolve potenziali "Internal Errors" dovuti al caricamento duplicato di React (locale via Vite vs CDN) e garantisce che l'applicazione utilizzi solo le dipendenze gestite in `package.json`.
 
 ### Code Hygiene & Infrastruttura (Fase 1 - Iniziale)
 - **Configurazione Prettier:** Creato file `.prettierrc` con regole di formattazione standard (single quote, no semi, trailing comma es5) per garantire coerenza stilistica.
