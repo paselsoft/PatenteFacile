@@ -1,11 +1,14 @@
 import React from 'react';
 import { STEPS_DATA } from '../constants';
+import { useTranslation } from '../contexts/LanguageContext';
 
 export const StepsSection: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="procedura" className="scroll-mt-8">
       <h2 className="text-3xl font-bold text-motorizzazione text-center mb-10">
-        I 4 Passi Fondamentali
+        {t('steps.title')}
       </h2>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -29,20 +32,20 @@ export const StepsSection: React.FC = () => {
                     <div className="flex-grow">
                     <div className="flex items-start mb-2">
                         <span className="bg-motorizzazione text-white text-xs font-bold px-2 py-1 rounded-full mr-3 uppercase tracking-wider flex-shrink-0 mt-1">
-                        Fase {step.id}
+                        {t('steps.phase')} {step.id}
                         </span>
                         <h3 className="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-motorizzazione transition-colors leading-tight">
-                        {step.title}
+                        {t(step.titleKey)}
                         </h3>
                     </div>
                     
                     <p className="text-gray-600 leading-relaxed">
-                        {step.description}
+                        {t(step.descriptionKey)}
                     </p>
                     
-                    {step.note && (
+                    {step.noteKey && (
                         <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-100 text-sm text-blue-900 flex items-start">
-                        <span className="font-bold mr-1">Nota:</span> {step.note.replace('Nota:', '')}
+                        {t(step.noteKey)}
                         </div>
                     )}
                     </div>
@@ -63,10 +66,9 @@ export const StepsSection: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-motorizzazione/80 via-transparent to-transparent opacity-90"></div>
                   <div className="absolute bottom-0 left-0 p-8 text-white">
-                      <p className="text-lg font-light opacity-90 mb-2">Il tuo obiettivo è vicino</p>
-                      <h3 className="text-3xl font-bold leading-tight">
-                          Dalla teoria alla strada,<br/>
-                          guidiamo il tuo successo.
+                      <p className="text-lg font-light opacity-90 mb-2">{t('steps.sticky_quote_1')}</p>
+                      <h3 className="text-3xl font-bold leading-tight whitespace-pre-line">
+                          {t('steps.sticky_quote_2')}
                       </h3>
                   </div>
               </div>

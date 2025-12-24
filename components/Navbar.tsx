@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { Menu, X, Car } from 'lucide-react';
+import { Menu, X, Car, Globe } from 'lucide-react';
 import { useScrollTo } from '../hooks/useScrollTo';
+import { useTranslation } from '../contexts/LanguageContext';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
   const scrollToId = useScrollTo();
+  const { t, language, setLanguage } = useTranslation();
 
   const links = [
-    { name: 'Presentazione', href: 'presentazione' },
-    { name: 'Documenti', href: 'documenti' },
-    { name: 'Procedura', href: 'procedura' },
-    { name: 'Costi', href: 'costi' },
+    { name: t('navbar.presentation'), href: 'presentazione' },
+    { name: t('navbar.documents'), href: 'documenti' },
+    { name: t('navbar.procedure'), href: 'procedura' },
+    { name: t('navbar.costs'), href: 'costi' },
   ];
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -19,6 +22,11 @@ export const Navbar: React.FC = () => {
     e.preventDefault();
     setIsOpen(false);
     scrollToId(targetId);
+  };
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'it' ? 'en' : 'it');
+    setIsLangOpen(false);
   };
 
   return (
@@ -40,7 +48,7 @@ export const Navbar: React.FC = () => {
           </button>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-4">
             {links.map((link) => (
               <a
                 key={link.name}
@@ -51,10 +59,29 @@ export const Navbar: React.FC = () => {
                 {link.name}
               </a>
             ))}
+            
+            {/* Language Switcher Desktop */}
+            <div className="relative ml-4 pl-4 border-l border-gray-200">
+                <button
+                    onClick={toggleLanguage}
+                    className="flex items-center text-gray-600 hover:text-motorizzazione px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-motorizzazione"
+                    aria-label="Cambia lingua"
+                >
+                    <Globe className="w-4 h-4 mr-2" />
+                    <span className="uppercase">{language}</span>
+                </button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
+            <button
+                onClick={toggleLanguage}
+                className="mr-4 p-2 rounded-md text-gray-600 hover:text-motorizzazione hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-motorizzazione"
+            >
+                <span className="font-bold uppercase text-sm">{language}</span>
+            </button>
+
             <button
               onClick={toggleMenu}
               type="button"

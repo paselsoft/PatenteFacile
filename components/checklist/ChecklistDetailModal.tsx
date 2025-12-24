@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { X, Check } from 'lucide-react';
 import { ChecklistItem } from '../../types';
+import { useTranslation } from '../../contexts/LanguageContext';
 
 interface ChecklistDetailModalProps {
   item: ChecklistItem | null;
@@ -11,6 +12,7 @@ interface ChecklistDetailModalProps {
 
 export const ChecklistDetailModal: React.FC<ChecklistDetailModalProps> = ({ item, isChecked, onClose, onToggle }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!item) return;
@@ -50,9 +52,9 @@ export const ChecklistDetailModal: React.FC<ChecklistDetailModalProps> = ({ item
             <div className={`p-5 text-white flex justify-between items-start ${item.id.startsWith('del_') ? 'bg-amber-500' : 'bg-motorizzazione'}`}>
                 <div>
                     <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase mb-2 ${item.required ? 'bg-white/20 text-white' : 'bg-green-500/20 text-white'}`}>
-                        {item.required ? 'Obbligatorio' : 'Opzionale'}
+                        {item.required ? t('checklist.mandatory') : t('checklist.optional')}
                     </span>
-                    <h3 id="detail-title" className="font-bold text-xl pr-4 leading-tight">{item.label}</h3>
+                    <h3 id="detail-title" className="font-bold text-xl pr-4 leading-tight">{t(item.labelKey)}</h3>
                 </div>
                 <button 
                     onClick={onClose}
@@ -66,7 +68,7 @@ export const ChecklistDetailModal: React.FC<ChecklistDetailModalProps> = ({ item
             <div className="p-6">
                 <div className="mb-8">
                     <p className="text-gray-700 text-lg leading-relaxed">
-                        {item.detail}
+                        {item.detailKey ? t(item.detailKey) : ''}
                     </p>
                 </div>
 
@@ -86,12 +88,12 @@ export const ChecklistDetailModal: React.FC<ChecklistDetailModalProps> = ({ item
                     {isChecked ? (
                         <>
                             <X className="w-5 h-5 mr-2" />
-                            Rimuovi dalla lista
+                            {t('checklist.detail_modal_btn_remove')}
                         </>
                     ) : (
                         <>
                             <Check className="w-5 h-5 mr-2" />
-                            Ho questo documento
+                            {t('checklist.detail_modal_btn_add')}
                         </>
                     )}
                 </button>

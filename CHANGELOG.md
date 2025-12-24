@@ -4,6 +4,79 @@ Tutte le modifiche notevoli a questo progetto saranno documentate in questo file
 
 ## [Unreleased]
 
+### Environment & Workflow
+- **Gestione Anteprima AI Studio:** Identificato il comportamento automatico dell'ambiente di preview che inietta script `importmap` in `index.html`.
+  - *Azione:* Rimozione manuale dello script prima del commit.
+  - *Nota Tecnica:* Questo comportamento non è disabilitabile lato configurazione progetto, ma deve essere gestito mantenendo pulito il codice sorgente per la build di produzione (Cloud Run/Vite).
+
+### Quality Assurance & Testing (Fase 4 - Consolidamento)
+- **Fix Critico Index:** Rimossa nuovamente e definitivamente la sezione `<script type="importmap">` da `index.html`. Analisi confermata: non esistono script interni al progetto che rigenerano questo blocco; la sua ricomparsa è probabilmente dovuta a configurazioni dell'ambiente di sviluppo esterno o plugin dell'editor.
+- **Ambiente di Test:** Aggiornato `vite.config.ts` per configurare correttamente l'ambiente `jsdom` per Vitest, abilitando il testing dei componenti React.
+- **Nuovi Test Unitari:**
+    - **LanguageContext:** Creata suite di test completa per verificare la logica di traduzione, il fallback delle chiavi e la persistenza della lingua.
+    - **Header Component:** Aggiunti test per verificare il rendering corretto dei testi e l'integrazione con lo scroll (mocked).
+    - **Navbar Component:** Aggiunti test per la navigazione, il cambio lingua e l'interazione con il logo.
+- **Copertura:** Aumentata significativamente la copertura dei test sui componenti "core" dell'interfaccia.
+
+### Environment & Config
+- **Ripristino Configurazioni:** Rigenerati i file `.prettierrc`, `.lintstagedrc` e `.husky/pre-commit` per garantire la stabilità dell'ambiente di sviluppo.
+
+### Fix & Code Hygiene (Fase 1 - Completamento)
+- **Configurazione Code Quality:** Creati e configurati `.prettierrc` e `.lintstagedrc` per standardizzare lo stile del codice e ottimizzare i commit.
+- **Husky Hook:** Aggiunto script `.husky/pre-commit` per automatizzare i controlli di qualità (ESLint + Prettier) prima di ogni commit.
+
+### Code Hygiene & Infrastruttura (Fase 1 - Iniziale)
+- **Configurazione Prettier:** Creato file `.prettierrc` con regole di formattazione standard (single quote, no semi, trailing comma es5) per garantire coerenza stilistica.
+- **Configurazione Lint-Staged:** Creato `.lintstagedrc` per eseguire ESLint e Prettier solo sui file in staging, ottimizzando i tempi di commit.
+- **Git Hooks:** Implementato hook `.husky/pre-commit` per automatizzare i controlli di qualità prima di ogni commit.
+- **Documentation:** Aggiornato `README.md` con i nuovi comandi di sviluppo (`npm run format`, `npm run lint`) e spiegazione del workflow di qualità.
+
+### Developer Experience & Code Hygiene (Fase 4 - Precedente)
+- **Infrastruttura di Quality Assurance:** Configurato un ambiente di sviluppo professionale per garantire la qualità del codice a lungo termine.
+- **ESLint Standard:** Aggiunta configurazione `.eslintrc.json` con regole rigorose per TypeScript, React Hooks e, soprattutto, **Accessibilità (jsx-a11y)**.
+- **Prettier:** Introdotto `.prettierrc` per garantire una formattazione del codice coerente tra diversi sviluppatori.
+- **Husky & Lint-Staged:** Implementati Git Hooks che impediscono il commit di codice che non rispetta le regole di linting o che contiene errori di tipo.
+- **Package Scripts:** Aggiornato `package.json` con script dedicati (`lint`, `format`, `type-check`) e organizzate le dipendenze spostando i tool di testing e build in `devDependencies`.
+
+### Quality Assurance (Fase 3: Testing Componenti)
+- **Unit Testing UI:** Implementati test completi per i componenti critici dell'interfaccia utilizzando `Vitest` e `React Testing Library`.
+- **ChecklistItem Tests:** 
+    - Verifica del rendering condizionale dei badge (Extra-UE, Minore, Delegato).
+    - Verifica delle interazioni utente (Toggle click).
+    - Verifica della formattazione visiva (testo barrato al completamento).
+- **ChecklistToggle Tests:** Verifica del cambio di stato e della renderizzazione corretta delle icone.
+- **CostsSection Tests:** Verifica della corretta visualizzazione della tabella prezzi e del calcolo totale.
+- **Mocking Contesto:** Implementata strategia di mocking per `LanguageContext` per isolare i test UI dalla logica di traduzione e persistenza.
+
+### Funzionalità (Fase 2: Internazionalizzazione)
+- **Supporto Multi-lingua (i18n):** Implementata l'intera infrastruttura per il supporto multilingua.
+    - Creazione `LanguageContext` per la gestione dello stato globale della lingua.
+    - Aggiunto hook `useTranslation` per il consumo delle traduzioni nei componenti.
+    - Aggiunti file di localizzazione `it.ts` e `en.ts` con dizionari completi.
+    - Persistenza della preferenza lingua tramite `localStorage`.
+- **UI Language Switcher:**
+    - Aggiunto pulsante toggle nella Navbar (desktop e mobile) per passare istantaneamente da Italiano a Inglese.
+    - Icona mondo/globo per identificare chiaramente la funzionalità.
+- **Refactoring Dati:**
+    - Aggiornato `constants.tsx` rimuovendo i testi hardcoded e sostituendoli con chiavi di traduzione (`titleKey`, `descriptionKey`, ecc.).
+    - Aggiornati i tipi TypeScript in `types.ts` per riflettere la nuova struttura basata su chiavi.
+- **Localizzazione Completa:**
+    - Tutte le sezioni (Header, Presentazione, Step, Costi, Checklist, Modali, Footer) ora reagiscono dinamicamente al cambio lingua.
+    - Gestione di testi complessi (HTML/Bold) tramite composizione o `dangerouslySetInnerHTML` controllato.
+
+### Fix Critici (Fase 1)
+- **Service Worker Registration (Fix Definitivo):**
+  - Semplificata la chiamata di registrazione a `navigator.serviceWorker.register('service-worker.js')`.
+  - Rimosso qualsiasi tentativo di costruire URL assoluti o usare percorsi con `./`. L'uso del filename diretto delega la risoluzione al browser, garantendo che l'origine sia sempre identica a quella della pagina (risolvendo "Script origin does not match") ed evitando errori di parsing URL.
+  - Spostata la registrazione all'evento `window.load` per migliorare le performance di caricamento iniziale della pagina.
+
+### PWA Engagement & UX (Fase 1)
+- **Installazione In-App:** Aggiunto un banner discreto ("Toast") che appare sui dispositivi compatibili per invitare l'utente a installare l'app come PWA. Scompare se l'utente lo chiude o installa l'app.
+- **Gestione Aggiornamenti:** Implementato un sistema di notifica aggiornamenti. Quando il Service Worker rileva una nuova versione, appare un banner in alto con un pulsante "Aggiorna Ora" che ricarica l'app in modo sicuro.
+- **Celebrazione Checklist:** Aggiunto un effetto "Coriandoli" (Confetti) che si attiva automaticamente quando l'utente completa il 100% della checklist documenti, aumentando la gratificazione (Gamification).
+- **Service Worker Refactor:** Migrata la logica di registrazione del Service Worker da `index.tsx` a un custom hook `useServiceWorker` per gestire lo stato reattivo dell'interfaccia.
+- **Strategia Cache:** Aggiornato `service-worker.js` per non forzare l'attivazione immediata (`skipWaiting`), permettendo all'utente di finire la sessione corrente prima di aggiornare.
+
 ### UX Improvements
 - **Link Portale Automobilista:** Trasformato il box decorativo statico nella sezione "Versamenti PagoPA" in una "Action Card" funzionale.
     - Ora è un link cliccabile che porta direttamente al sito ufficiale (Portale dell'Automobilista) per effettuare i pagamenti.

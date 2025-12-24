@@ -2,6 +2,7 @@ import React from 'react';
 import { Check, Info, UserCog } from 'lucide-react';
 import { ChecklistItem } from '../../types';
 import { DELEGATE_DOCUMENTS_DATA } from '../../constants';
+import { useTranslation } from '../../contexts/LanguageContext';
 
 interface ChecklistItemProps {
   item: ChecklistItem;
@@ -18,6 +19,7 @@ export const ChecklistItemRow: React.FC<ChecklistItemProps> = ({
   onInfoClick,
   isDelegateMode
 }) => {
+  const { t } = useTranslation();
   const isDelegateItem = item.id.startsWith('del_');
   const isExtraEuItem = item.id === 'soggiorno';
   const isMinorItem = item.id.startsWith('doc_genitore');
@@ -25,9 +27,9 @@ export const ChecklistItemRow: React.FC<ChecklistItemProps> = ({
   const isFirstDelegateItem = isDelegateMode && isDelegateItem && item.id === DELEGATE_DOCUMENTS_DATA[0].id;
 
   let badge = null;
-  if (isDelegateItem) badge = <span className="ml-2 text-[10px] uppercase tracking-wider bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">Delegato</span>;
-  else if (isExtraEuItem) badge = <span className="ml-2 text-[10px] uppercase tracking-wider bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full font-bold">Extra-UE</span>;
-  else if (isMinorItem) badge = <span className="ml-2 text-[10px] uppercase tracking-wider bg-pink-100 text-pink-800 px-2 py-0.5 rounded-full font-bold">Minore</span>;
+  if (isDelegateItem) badge = <span className="ml-2 text-[10px] uppercase tracking-wider bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">{t('checklist.badge_delegate')}</span>;
+  else if (isExtraEuItem) badge = <span className="ml-2 text-[10px] uppercase tracking-wider bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full font-bold">{t('checklist.badge_extra_eu')}</span>;
+  else if (isMinorItem) badge = <span className="ml-2 text-[10px] uppercase tracking-wider bg-pink-100 text-pink-800 px-2 py-0.5 rounded-full font-bold">{t('checklist.badge_minor')}</span>;
 
   return (
     <React.Fragment>
@@ -36,7 +38,7 @@ export const ChecklistItemRow: React.FC<ChecklistItemProps> = ({
                 <div className="h-px bg-gray-200 flex-grow mr-4"></div>
                 <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center">
                     <UserCog className="w-3 h-3 mr-1" />
-                    Sezione Delegati
+                    {t('checklist.delegate_section')}
                 </span>
                 <div className="h-px bg-gray-200 flex-grow ml-4"></div>
             </div>
@@ -76,7 +78,7 @@ export const ChecklistItemRow: React.FC<ChecklistItemProps> = ({
                 {/* Label Text */}
                 <div className="flex-grow">
                     <h4 className={`font-medium text-base sm:text-lg transition-colors duration-300 flex flex-wrap items-center ${isChecked ? 'text-gray-400 line-through decoration-gray-300' : 'text-gray-800'}`}>
-                        {item.label}
+                        {t(item.labelKey)}
                         {!isChecked && badge}
                     </h4>
                 </div>
@@ -94,7 +96,7 @@ export const ChecklistItemRow: React.FC<ChecklistItemProps> = ({
                     p-2 rounded-full transition-colors duration-300 ml-2 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-400
                     ${isChecked ? 'text-gray-300 hover:text-gray-500' : 'text-blue-400 hover:text-blue-600 hover:bg-blue-50'}
                 `}
-                aria-label={`Vedi dettagli per ${item.label}`}
+                aria-label={`Vedi dettagli per ${t(item.labelKey)}`}
             >
                 <Info className="w-5 h-5" />
             </button>

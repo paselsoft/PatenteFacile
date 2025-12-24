@@ -39,6 +39,8 @@ L'applicazione offre una panoramica chiara dei costi, dei passaggi necessari e f
 *   **Lucide React:** Libreria di icone vettoriali.
 *   **LocalStorage API:** Per la persistenza dei dati.
 *   **PWA Manifest:** Per l'installabilità dell'applicazione.
+*   **Vite:** Build tool rapido e leggero.
+*   **TypeScript:** Superset tipizzato di JavaScript.
 
 ## Struttura del Progetto
 
@@ -55,7 +57,27 @@ L'applicazione offre una panoramica chiara dei costi, dei passaggi necessari e f
 
 1.  Assicurati di avere Node.js installato.
 2.  Installa le dipendenze: `npm install`
-3.  Avvia: `npm start`
+3.  Avvia il server di sviluppo: `npm run dev`
+
+## Qualità del Codice e Sviluppo
+
+Il progetto include strumenti preconfigurati per garantire la qualità del codice (Code Hygiene).
+
+### Comandi Disponibili
+
+*   **Linting:** `npm run lint` - Analizza il codice alla ricerca di errori e problemi di stile.
+*   **Fix automatico:** `npm run lint:fix` - Corregge automaticamente i problemi risolvibili.
+*   **Formattazione:** `npm run format` - Formatta tutto il codice secondo le regole Prettier.
+*   **Type Check:** `npm run type-check` - Verifica la correttezza dei tipi TypeScript senza generare build.
+*   **Test:** `npm run test` - Esegue la suite di unit test con Vitest.
+
+### Git Hooks (Husky)
+
+Prima di ogni commit, vengono eseguiti automaticamente:
+1.  **Prettier**: Formattazione dei file modificati.
+2.  **ESLint**: Controllo qualità sui file modificati.
+
+Se questi controlli falliscono, il commit viene bloccato per prevenire l'inserimento di codice non conforme.
 
 ## Licenza
 

@@ -7,35 +7,42 @@ import { CostsSection } from './components/CostsSection';
 import { DocumentsChecklist } from './components/DocumentsChecklist';
 import { Footer } from './components/Footer';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { PwaManager } from './components/pwa/PwaManager';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 const App: React.FC = () => {
   return (
     <ErrorBoundary>
-      <div className="min-h-screen flex flex-col">
-        {/* Skip Link for Accessibility */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 bg-motorizzazione text-white px-4 py-2 rounded-lg shadow-lg font-bold transition-transform"
-        >
-          Salta al contenuto principale
-        </a>
+      <LanguageProvider>
+        <div className="min-h-screen flex flex-col">
+          {/* Gestore Prompt PWA (Installazione & Aggiornamenti) */}
+          <PwaManager />
 
-        <Navbar />
-        
-        {/* Add top padding to account for fixed navbar */}
-        <div className="pt-16">
-          <Header />
+          {/* Skip Link for Accessibility */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 bg-motorizzazione text-white px-4 py-2 rounded-lg shadow-lg font-bold transition-transform"
+          >
+            Salta al contenuto principale
+          </a>
+
+          <Navbar />
           
-          <main id="main-content" className="flex-grow container mx-auto px-4 py-8 sm:px-6 lg:px-8 space-y-24 outline-none" tabIndex={-1}>
-            <PresentationSection />
-            <DocumentsChecklist />
-            <StepsSection />
-            <CostsSection />
-          </main>
+          {/* Add top padding to account for fixed navbar */}
+          <div className="pt-16">
+            <Header />
+            
+            <main id="main-content" className="flex-grow container mx-auto px-4 py-8 sm:px-6 lg:px-8 space-y-24 outline-none" tabIndex={-1}>
+              <PresentationSection />
+              <DocumentsChecklist />
+              <StepsSection />
+              <CostsSection />
+            </main>
 
-          <Footer />
+            <Footer />
+          </div>
         </div>
-      </div>
+      </LanguageProvider>
     </ErrorBoundary>
   );
 };

@@ -1,51 +1,50 @@
-import React from 'react';
 import { Stethoscope, FileText, BookOpen, Car } from 'lucide-react';
 import { StepItem, CostItem, ChecklistItem } from './types';
 
 export const STEPS_DATA: StepItem[] = [
   {
     id: 1,
-    title: "Visita Medica di Idoneità",
-    description: "Recati dal tuo medico curante per ottenere il Certificato Anamnestico. Successivamente, prenota la visita con un medico certificatore abilitato (ASL, ACI, ecc.). Il medico invierà il certificato telematicamente.",
-    note: "Nota: Allo sportello dovrai portare la Ricevuta telematica della visita (con foto), NON l'anamnestico.",
+    titleKey: "steps.step1_title",
+    descriptionKey: "steps.step1_desc",
+    noteKey: "steps.step1_note",
     icon: Stethoscope
   },
   {
     id: 2,
-    title: "Presentazione Domanda",
-    description: "Presenta il Modello TT 2112 compilato, le ricevute PagoPA, la ricevuta medica e i documenti di identità. La domanda ha validità di 6 mesi.",
+    titleKey: "steps.step2_title",
+    descriptionKey: "steps.step2_desc",
     icon: FileText
   },
   {
     id: 3,
-    title: "Esame Teoria & Foglio Rosa",
-    description: "Hai 2 tentativi in 6 mesi. L'esame (Cat. B) consiste in 30 quiz (max 3 errori) in 20 minuti. Superato l'esame, dovrai rivolgerti ad un'autoscuola per il rilascio del Foglio Rosa e le guide obbligatorie.",
+    titleKey: "steps.step3_title",
+    descriptionKey: "steps.step3_desc",
     icon: BookOpen
   },
   {
     id: 4,
-    title: "Esercitazioni e Guida",
-    description: "Il Foglio Rosa è valido 12 mesi. Hai a disposizione 3 tentativi per l'esame pratico.",
+    titleKey: "steps.step4_title",
+    descriptionKey: "steps.step4_desc",
     icon: Car
   }
 ];
 
 export const COSTS_DATA: CostItem[] = [
   {
-    reason: "Esame di Teoria (Conseguimento)",
-    detail: "Include Diritti (€26,40) + Bollo Domanda (€16,00)",
+    reasonKey: "costs.cost1_reason",
+    detailKey: "costs.cost1_detail",
     code: "N067",
     amount: "€ 42,40"
   },
   {
-    reason: "Imposta di Bollo (Emissione Patente)",
-    detail: "Per il documento fisico",
+    reasonKey: "costs.cost2_reason",
+    detailKey: "costs.cost2_detail",
     code: "N019",
     amount: "€ 16,00"
   },
   {
-    reason: "TOTALE VERSAMENTI UMC",
-    detail: "",
+    reasonKey: "costs.total_reason",
+    detailKey: "",
     code: "",
     amount: "€ 58,40",
     isTotal: true
@@ -55,32 +54,32 @@ export const COSTS_DATA: CostItem[] = [
 export const DOCUMENTS_DATA: ChecklistItem[] = [
   { 
     id: 'tt2112', 
-    label: 'Modello TT 2112', 
-    detail: 'Compilato in ogni sua parte e firmato dal candidato.', 
+    labelKey: 'documents.tt2112_label', 
+    detailKey: 'documents.tt2112_detail', 
     required: true 
   },
   { 
     id: 'pagopa', 
-    label: 'Ricevute PagoPA', 
-    detail: 'Attestazione di pagamento delle tariffe N067 e N019.', 
+    labelKey: 'documents.pagopa_label', 
+    detailKey: 'documents.pagopa_detail', 
     required: true 
   },
   { 
     id: 'medico', 
-    label: 'Ricevuta Visita Medica', 
-    detail: 'Ricevuta telematica con foto (rilasciata dal medico certificatore).', 
+    labelKey: 'documents.medico_label', 
+    detailKey: 'documents.medico_detail', 
     required: true 
   },
   { 
     id: 'identita', 
-    label: 'Documento di Identità', 
-    detail: 'In corso di validità (Originale + Fotocopia fronte/retro).', 
+    labelKey: 'documents.identita_label', 
+    detailKey: 'documents.identita_detail', 
     required: true 
   },
   { 
     id: 'cf', 
-    label: 'Codice Fiscale', 
-    detail: 'Tessera Sanitaria (Originale + Fotocopia fronte/retro).', 
+    labelKey: 'documents.cf_label', 
+    detailKey: 'documents.cf_detail', 
     required: true 
   }
 ];
@@ -88,8 +87,8 @@ export const DOCUMENTS_DATA: ChecklistItem[] = [
 export const EXTRA_EU_DOCUMENTS_DATA: ChecklistItem[] = [
   { 
     id: 'soggiorno', 
-    label: 'Permesso di Soggiorno', 
-    detail: 'Solo per cittadini extracomunitari (Originale + Copia). Deve essere in corso di validità o accompagnato da ricevuta di rinnovo.', 
+    labelKey: 'documents.soggiorno_label', 
+    detailKey: 'documents.soggiorno_detail', 
     required: true 
   }
 ];
@@ -97,8 +96,8 @@ export const EXTRA_EU_DOCUMENTS_DATA: ChecklistItem[] = [
 export const MINOR_DOCUMENTS_DATA: ChecklistItem[] = [
   {
     id: 'doc_genitore',
-    label: 'Documento Genitore/Tutore',
-    detail: 'Fotocopia del documento di riconoscimento del genitore o tutore legale che ha firmato la domanda.',
+    labelKey: 'documents.doc_genitore_label', 
+    detailKey: 'documents.doc_genitore_detail',
     required: true
   }
 ];
@@ -106,20 +105,20 @@ export const MINOR_DOCUMENTS_DATA: ChecklistItem[] = [
 export const DELEGATE_DOCUMENTS_DATA: ChecklistItem[] = [
   {
     id: 'del_delega',
-    label: 'Delega Firmata',
-    detail: 'Delega in carta semplice firmata dal candidato (Delegante).',
+    labelKey: 'documents.del_delega_label', 
+    detailKey: 'documents.del_delega_detail',
     required: true
   },
   {
     id: 'del_doc_delegato',
-    label: 'Documento Delegato (Orig. + Copia)',
-    detail: 'Documento di riconoscimento della persona che presenta la pratica (Delegato): serve l\'ORIGINALE in visione più una FOTOCOPIA da allegare.',
+    labelKey: 'documents.del_doc_delegato_label', 
+    detailKey: 'documents.del_doc_delegato_detail',
     required: true
   },
   {
     id: 'del_doc_delegante',
-    label: 'Documento Delegante (Copia)',
-    detail: 'Fotocopia del documento di riconoscimento del candidato (Delegante).',
+    labelKey: 'documents.del_doc_delegante_label', 
+    detailKey: 'documents.del_doc_delegante_detail',
     required: true
   }
 ];
