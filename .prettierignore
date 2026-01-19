@@ -1,0 +1,7 @@
+dist
+node_modules
+*.md
+*.json
+public/
+.git/
+coverage/

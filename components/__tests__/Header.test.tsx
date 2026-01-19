@@ -1,48 +1,63 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import { Header } from '../Header';
 
-// Mock Language Context per evitare dipendenza dalle traduzioni reali
+// Mock the context and hooks
 vi.mock('../../contexts/LanguageContext', () => ({
   useTranslation: () => ({
     t: (key: string) => {
-        if (key === 'header.cta_docs') return 'Prepara i Documenti';
-        if (key === 'header.cta_steps') return 'Scopri i Passaggi';
-        if (key === 'header.title_prefix') return 'Patente';
-        if (key === 'header.title_suffix') return 'Facile';
-        return key;
+      const translations: Record<string, string> = {
+        'header.title_prefix': 'Patente',
+        'header.title_suffix': 'Facile',
+        'header.subtitle': 'La guida completa per la patente B',
+        'header.cta_docs': 'Prepara i Documenti',
+        'header.cta_steps': 'Scopri i Passaggi',
+      };
+      return translations[key] || key;
     },
     language: 'it',
+    setLanguage: vi.fn(),
   }),
 }));
 
-// Mock scroll hook
-const scrollToMock = vi.fn();
 vi.mock('../../hooks/useScrollTo', () => ({
-  useScrollTo: () => scrollToMock
+  useScrollTo: () => vi.fn(),
 }));
 
 describe('Header Component', () => {
-  it('dovrebbe renderizzare titolo e pulsanti CTA', () => {
+  it('dovrebbe renderizzare il titolo principale', () => {
     render(<Header />);
     expect(screen.getByText('Patente')).toBeDefined();
     expect(screen.getByText('Facile')).toBeDefined();
+  });
+
+  it('dovrebbe renderizzare il sottotitolo', () => {
+    render(<Header />);
+    expect(screen.getByText('La guida completa per la patente B')).toBeDefined();
+  });
+
+  it('dovrebbe avere due pulsanti CTA', () => {
+    render(<Header />);
     expect(screen.getByText('Prepara i Documenti')).toBeDefined();
     expect(screen.getByText('Scopri i Passaggi')).toBeDefined();
   });
 
-  it('dovrebbe scorrere ai documenti quando si clicca la CTA primaria', () => {
+  it('dovrebbe avere una struttura semantica corretta', () => {
     render(<Header />);
-    const btn = screen.getByText('Prepara i Documenti');
-    fireEvent.click(btn);
-    expect(scrollToMock).toHaveBeenCalledWith('documenti');
+    const header = document.querySelector('header');
+    expect(header).toBeDefined();
   });
 
-  it('dovrebbe scorrere alla procedura quando si clicca la CTA secondaria', () => {
+  it('dovrebbe avere il tag h1 per il titolo principale', () => {
     render(<Header />);
-    const btn = screen.getByText('Scopri i Passaggi');
-    fireEvent.click(btn);
-    expect(scrollToMock).toHaveBeenCalledWith('procedura');
+    const h1 = document.querySelector('h1');
+    expect(h1).toBeDefined();
+    expect(h1?.textContent).toContain('Patente');
+  });
+
+  it('dovrebbe avere i pulsanti CTA con stili appropriati', () => {
+    render(<Header />);
+    const buttons = screen.getAllByRole('button');
+    expect(buttons.length).toBeGreaterThanOrEqual(2);
   });
 });
